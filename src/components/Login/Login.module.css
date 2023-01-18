@@ -98,6 +98,10 @@ h1{
     justify-content: flex-start;
 }
 
+.checkbox_container label{
+    color: white;
+}
+
 .checkbox_container input{
     margin-right: 5px;
     accent-color: gray;
