@@ -1,0 +1,35 @@
+.nav{
+    display: flex;
+    position: fixed;
+    z-index: 90000;
+    width: 100%;
+    opacity: 0.8;
+    color: white;
+    
+}
+
+.nav_links{
+    text-decoration: none;
+    font-size: 1.2rem;
+    color: white;
+} 
+
+.nav_links:hover{
+    color: var(--font-orange);
+    cursor: pointer;
+}
+
+.nav li{
+    list-style: none;
+}
+
+.nav img{
+    background-color: transparent;
+}
+
+.logo{
+    width: 120px;
+    mix-blend-mode: multiply;
+    /*mix-blend-mode: multiply;
+    overflow: hidden; */
+}

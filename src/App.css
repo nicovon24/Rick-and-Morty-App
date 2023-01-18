@@ -1,0 +1,96 @@
+/* Rick and morty logo font */
+@font-face {
+    font-family: 'Rick and Morty font';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Rick and Morty font'), url('./fonts/logo.ttf') format('woff');
+}
+
+:root{
+    --dark-gray : rgb(39, 43, 51);
+    --light-gray: #3c3e44;
+    --light-blue: #02b1c8;
+    --font-gray : rgb(158, 158, 158);
+    --input-color: rgb(189, 206, 210);
+    --font-orange: orange;
+}
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+input{
+    text-transform: capitalize;
+}
+
+.animated_btn{
+min-width: 120px;
+font-size: 0.7rem;
+line-height: 15px 5px;
+padding: 15px 10px;
+font-family: sans-serif;
+text-decoration: none;
+color: #333;
+border: none;
+letter-spacing: 2px;
+text-align: center;
+position: relative;
+transition: all .35s;
+margin-top: 5px;
+margin-right: 5px;
+cursor: pointer;
+}
+
+.animated_btn:after{
+position: absolute;
+content: "";
+top: 0;
+left: 0;
+width: 0;
+height: 100%;
+background-color: rgb(197, 187, 187);
+transition: all .35s;
+}
+
+.animated_btn:hover{
+color: var(--light-gray);
+}
+
+.animated_btn:hover:after{
+width: 100%;
+}
+
+.animated_btn label{
+position: relative;
+z-index: 9000;
+}
+
+.input_primary{
+max-width: 300px;
+background-color: rgb(197, 187, 187);
+border: none;
+outline: none;
+padding: 12px;
+width: 100%;
+border-radius: 5px;
+}
+
+.input_primary::placeholder{
+    color: var(--light-gray);
+}
+
+.input_invalid:focus{
+    outline: 2px solid red;
+    transition: 1s;
+}
+
+.input_valid{
+    outline: 2px solid green;
+    transition: 1s;
+}
+
+button{
+    cursor: pointer;
+}

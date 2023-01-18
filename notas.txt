@@ -1,0 +1,2 @@
+//* agregar formulario de agregar personaje
+//* agregar botón borrar y favoritos capaz

@@ -1,0 +1,165 @@
+/*todo *** characters part ***/
+
+.characters_menu{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.character{
+    padding: 10px 0px;
+    color: rgb(158, 158, 158);
+}
+
+.character_item{
+    background-color: var(--light-gray);
+    color: white;
+    font-family: sans-serif;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+/*** characters created ***/
+.character_item_created{
+    max-height: 400px;
+}
+
+.character_item_created .character_info{
+    padding-top: 30px;
+}
+
+.character_name{
+    color: var(--font-orange);
+}
+
+.character_item img{
+    width: 100%;
+    height: 280px;
+    position: relative;
+}
+
+.character_btn{
+    border-radius: 50%;
+    margin-top: 6px;
+    padding: 3px 6px;
+    padding-top: 6px;
+    font-size: 1.2rem;
+    background-color: transparent;
+    position: absolute;
+}
+
+.character_fav{
+    z-index: 9;
+    color: white;
+    border: 1px solid white;
+    margin-left: 1px;
+}
+
+.character_close{
+    z-index: 100;
+    padding: 5px 10px;
+    color: red;
+    border: 1px solid red;
+}
+
+.btn_close_container{ /* aligning it to the right */
+    text-align: right;
+    position: relative;
+    right: 35px;
+}
+
+.character_info{
+    padding-left: 10px;
+}
+
+.character_statusColor{
+    display: inline-block;
+    height: 10px;
+    width: 10px;
+    border-radius: 10px;
+    margin-right: 5px;
+}
+
+.character_subtitle{
+    padding: 8px 0px;
+    color: rgb(175, 168, 168);
+}
+
+.alive  {background-color: green;}
+.dead   {background-color: red;}
+.unknown{background-color: rgb(169, 162, 162);}
+
+/*todo *** character details ***/
+.details_container{
+    min-height: 100vh;
+    background-color: var(--dark-gray);
+    display: flex;
+    flex-direction: column;
+    padding-top: 200px;
+    align-items: center;
+}
+
+.card{
+    border-radius: 10px;
+    padding: 20px;
+    background-color: var(--light-gray);
+    font-size: 1.1rem;
+}
+
+.card img{
+    width: 250px;
+    object-fit: cover;
+}
+
+.details_name{
+    color: var(--font-orange);
+    font-size: 2rem;
+    padding-bottom: 15px;
+}
+
+.card p{
+    color: white;
+}
+
+.separate_first{
+    color: var(--font-orange);
+    padding-right: 20px;
+    font-weight: 900;
+}
+
+.separate_second{
+    color: rgb(197, 192, 192);
+}
+
+.btn_backHome{
+    background-color: var(--font-orange);
+    outline: none;
+    border: none;
+    border-radius: 3px;
+    margin-top: 20px;
+    padding: 7px 15px;
+    cursor: pointer;
+}
+
+.none_characters{ /* msg shown when there is no character matching the result */
+    color: var(--font-orange);
+    width: 400px;
+    margin: 30px auto;
+    padding-bottom: 30px;
+}
+
+
+/* *** tablet ***/
+
+@media(min-width: 1000px){
+    .character_item img{
+        height: auto;
+    }
+    .character_form{
+        width: 140%;
+    }
+    .character_form:nth-child(2){
+        margin-top: 30px;
+    }
+}
+
+

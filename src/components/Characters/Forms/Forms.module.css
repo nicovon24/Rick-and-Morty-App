@@ -1,0 +1,57 @@
+
+/*** filter by name***/
+
+.character_form{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 30px;
+    padding: 20px;
+    border: 1px solid var(--font-orange);
+    width: 400px;
+}
+
+.character_filterTitle{
+    color: var(--font-orange);
+    font-size: 1.1rem;
+    padding-bottom: 10px;
+    align-self: flex-start;
+    text-decoration: underline;
+}
+
+.character_subtitle{
+    color: var(--font-gray);
+    padding: 9px 0px;
+}
+
+.uncompleted_data{
+    padding-top: 8px;
+    color: red;
+}
+
+/* *** add form ***/
+
+.add_property{
+    color: var(--font-gray);
+    margin: 5px 0px;
+}
+
+.add_file_input{
+    display: none;
+}
+
+/*** created characters buttons ***/
+.add_buttons_btn{
+    width: 150px;
+}
+
+
+/* *** tablet ***/
+
+@media(min-width: 1000px){
+    .character_form{
+        width: 300px;
+    }
+    .character_form:nth-child(2){
+        margin-top: 30px;
+    }
+}

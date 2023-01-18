@@ -1,0 +1,37 @@
+.aboutContainer{
+    width: 100%;
+    min-height: 100vh;
+    background-color: #262c3a;
+    color: white;
+    padding-top: 100px;
+    line-height: 1.5;
+}
+
+.about{
+    display: grid;
+    grid-template-columns: auto auto;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.about h2{
+    color: var(--font-orange);
+    font-size: 2rem;
+}
+
+.about img{
+    width: 500px;
+}
+
+.about p{
+    margin-bottom: 5px;
+}
+
+@media(max-width: 1000px){
+    .about{
+        grid-template-columns: 1fr;
+    }
+    .about img{
+        display: none;
+    }
+}
