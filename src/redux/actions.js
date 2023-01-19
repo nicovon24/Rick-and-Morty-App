@@ -1,15 +1,16 @@
-export let CHANGE_FAV = 'CHANGE_FAV'
-// export let ADD_TO_TOTAL_FAVS = 'ADD_TO_TOTAL_FAVS'
-// export let ADD_VISIT = 'ADD_VISIT'
+export let ADD_FAV = 'ADD_FAV'
+export let REMOVE_FAV = 'REMOVE_FAV'
 
-export const changeFav = (id)=>{ //*adds or remove the fav
-    return { type: CHANGE_FAV, payload: id }  
+export const addFav = (character)=>{ //*adds or remove the fav
+    return { 
+        type: ADD_FAV, 
+        payload: character 
+    }  
 }
 
-// export const addToTotalFavs = ()=>{
-//     return { type: ADD_TO_TOTAL_FAVS }  
-// }
-
-// export const addVisit = ()=>{
-//     return { type: ADD_VISIT }  
-// }
+export const removeFav = (id)=>{ //*adds or remove the fav
+    return { 
+        type: REMOVE_FAV, 
+        payload: id 
+    }  
+}

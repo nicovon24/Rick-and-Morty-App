@@ -8,6 +8,7 @@ const DataProvider = ({ children }) => {
     let [characters, setCharacters] = useState([])
     let [page, setPage] = useState(1)
     let [idCreated, setIdCreated] = useState(1)
+    let [favorites, setFavorites] = useState([])
 
     useEffect(()=>{
       try{
@@ -24,7 +25,7 @@ const DataProvider = ({ children }) => {
     }, [])
 
     return <DataContext.Provider value={{initialCharacters, characters, setCharacters, character, setCharacter,
-    page, setPage, idCreated, setIdCreated}}>{children}</DataContext.Provider>
+    page, setPage, idCreated, setIdCreated, favorites, setFavorites}}>{children}</DataContext.Provider>
 }
 
 export const useGlobalContext = () => { 

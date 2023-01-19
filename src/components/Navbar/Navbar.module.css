@@ -1,11 +1,17 @@
 .nav{
-    display: flex;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
     position: fixed;
     z-index: 90000;
-    width: 100%;
     opacity: 0.8;
-    color: white;
-    
+    color: white; 
+}
+
+.nav ul{
+    display: flex;
+    justify-content: space-around;
+    padding-top: 15px;
 }
 
 .nav_links{
@@ -14,9 +20,25 @@
     color: white;
 } 
 
+.nav_title_container{
+    display: none;
+}
+
+.nav_title{
+    font-family: 'Rick and Morty font';
+    color: white;
+    font-size: 1.8rem;
+    padding-top: 10px;
+    cursor: pointer;
+}
+
 .nav_links:hover{
     color: var(--font-orange);
     cursor: pointer;
+}
+
+.nav_icon{
+    padding-right: 3px;
 }
 
 .nav li{
@@ -32,4 +54,15 @@
     mix-blend-mode: multiply;
     /*mix-blend-mode: multiply;
     overflow: hidden; */
+}
+
+@media(min-width: 800px){
+    .nav{
+        width: 80%;
+        grid-template-columns: 1fr 1fr;
+    }
+    .nav_title_container, .nav ul{
+        display: flex;
+        justify-content: space-around;
+    }
 }

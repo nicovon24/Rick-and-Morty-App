@@ -1,4 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+// import {useDispatch, useSelector} from "react-redux"
+// import {addFav, removeFav} from "../../../redux/actions.js"
+import {DataContext} from "../../../context"
 import styles from "./Characters.module.css"
 import {Link} from "react-router-dom"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -7,6 +10,9 @@ import { faHeart, faClose } from '@fortawesome/free-solid-svg-icons'
 export default function Character({character, areCreatedOnes, onRemoveChar}) {
    let [firstEpisodeName, setFirstEpisodeName] = useState("") 
    let [statusColor, setStatusColor] = useState("")
+   let [isFavorite, setIsFavorite] = useState(false)
+
+   let {favorites, setFavorites} = useContext(DataContext)
 
    //getting first episode name
    if(character.episode){
@@ -26,18 +32,44 @@ export default function Character({character, areCreatedOnes, onRemoveChar}) {
       }
    }, [character])
 
+   const handleChangeFav = ()=> {
+      if(isFavorite){
+         setFavorites([...favorites.filter(el=>el.id!==character.id)])
+         setIsFavorite(false)
+      }
+      else{
+         setFavorites([...favorites, character])
+         setIsFavorite(true)
+      }
+   }
+
+   let some = favorites.some(el=>el.id===character.id)
+
+   useEffect(()=>{
+      some ? setIsFavorite(true) : setIsFavorite(false)
+   }, [some])
+
    return (
       <div className={`${styles.character_item} ${areCreatedOnes && styles.character_item_created}`}>
          
-            <div>
-               {/* in created characters, we do not use the fav and close btn, we can add it! */}
-               {<button className={`${styles.character_fav} ${styles.character_btn}`}><FontAwesomeIcon icon={faHeart}/></button>}
-               <div className={styles.btn_close_container}>
-                  {<button className={`${styles.character_close} ${styles.character_btn}`}><FontAwesomeIcon icon={faClose}
-                  onClick={()=>onRemoveChar(character.id)}/></button>}
+         <div>
+            {/* in created characters, we do not use the fav and close btn, we can add it! */
+               <>
+                  <button  className={`${styles.character_fav} ${!isFavorite ? styles.character_fav_inactive : styles.character_fav_active} ${styles.character_btn}`}
+                  onClick={()=>handleChangeFav()}>
+                     <FontAwesomeIcon icon={faHeart}/>
+                  </button>
+
+
+                  <div className={styles.btn_close_container}>
+                     <button className={`${styles.character_close} ${styles.character_btn}`}><FontAwesomeIcon icon={faClose}
+                     onClick={()=>onRemoveChar(character.id)}/></button>
                   </div>
-                  <Link to={`/characters/${character.id}`}><img src={character?.image} alt=""/></Link>
-            </div>
+               </>
+            }
+            <Link to={`/characters/${character.id}`}><img src={character?.image} alt=""/></Link>
+         </div>
+         
          <div className={styles.character_info}>
             <h2 className={styles.character_name}>{character?.name}</h2>
             <div>
@@ -69,3 +101,26 @@ export default function Character({character, areCreatedOnes, onRemoveChar}) {
       </div>
    );
 }
+
+
+// const dispatch = useDispatch()
+
+// let listFavs = useSelector(state=>state.listFavs)
+
+// useEffect(()=>{
+//    dispatch(addFav(character))
+//    dispatch(removeFav(character.id))
+// }, [])
+
+// const handleChangeFav = (id)=>{
+//    if(isFavorite){
+//       setIsFavorite(false)
+//       dispatch(removeFav(id))
+//    } else{
+//       setIsFavorite(true)
+//       dispatch(addFav(character))
+//    }
+// }
+
+// useEffect(()=>{
+// }, [listFavs])
