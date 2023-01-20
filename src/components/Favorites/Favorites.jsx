@@ -15,9 +15,7 @@ export default function Favorites(){
     let [gender, setGender] = useState("")
 
     const handleChangeOrder = (e)=>setOrder(e.target.value)
-    const handleChangeGender = (e)=>{
-        setGender(e.target.value)
-    }
+    const handleChangeGender = (e)=>setGender(e.target.value)
 
     useEffect(()=>{
         setFavorites([...initialFavorites])
