@@ -1,12 +1,11 @@
 import { useContext, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {DataContext} from "../../../context.js"
-import { getInitialChars } from '../../../redux/actions.js'
+import { getInitialChars, saveSearchInput, searchChar } from '../../../redux/actions.js'
 import styles from "./Forms.module.css"
 
 export default function SearchCharacter(){
-    let [matchedCharacters, setMatchedCharacters] = useState([]) //characters which match the filter
-    let {setCharacters, character, setCharacter} = useContext(DataContext)
+    let [character, setCharacter] = useState("")
 
     let dispatch = useDispatch()
 
@@ -14,37 +13,29 @@ export default function SearchCharacter(){
         dispatch(getInitialChars())
     }, [])
 
-    let initialCharacters = useSelector(state=>state.initialCharacters)
+    const handleChangeInput = e=> {
+        dispatch(saveSearchInput(e.target.value))
+    }
+
+    let {searchInput} = useSelector(state=>state)
+    console.log(searchInput)
 
     const handleSubmit = e=>{
         e.preventDefault()
-        if(character!==""){
-            setMatchedCharacters([])
-            fetch(`https://rickandmortyapi.com/api/character/?name=${character}`)
-                .then(resp=>resp.json())
-                .then(data=>{
-                    if(data.results) setMatchedCharacters([...data.results])
-                    else setMatchedCharacters([])
-                })
-                .catch(err=>setMatchedCharacters([]))
-        }
-        else setMatchedCharacters([...initialCharacters])
+        if(searchInput!=="") dispatch(searchChar(searchInput))
+        else dispatch(getInitialChars())
     }
 
     useEffect(()=>{
-        setCharacters([...matchedCharacters])
-    }, [matchedCharacters])
-
-    useEffect(()=>{
-        if(!character) setCharacters([...initialCharacters ]) //the input null, we restore the characters
+        if(!searchInput) dispatch(getInitialChars()) //the input null, we restore the characters
     }, [character])
 
     return(
         <>
             <form className={styles.character_form} onSubmit={handleSubmit}>
                 <p className={styles.character_filterTitle}>Search a character by name</p>
-                <input className={`input_primary ${!character ? "input_invalid" : "input_valid"}`} value={character} type="text" placeholder="Example: Rick..." 
-                onChange={e=>setCharacter(e.target.value)}></input>
+                <input className={`input_primary ${!character ? "input_invalid" : "input_valid"}`} value={searchInput} type="text" placeholder="Example: Rick..." 
+                onChange={handleChangeInput}></input>
                 {character ? "" : <p className={styles.uncompleted_data}>Uncompleted data</p>}
                 <div>
                     <button className="animated_btn" type="submit"><label>Submit</label></button>

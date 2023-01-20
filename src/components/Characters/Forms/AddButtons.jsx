@@ -6,7 +6,7 @@ export default function AddButtons({onShowCreatedChars, isActiveShowAll}){
     let {setIdCreated} = useContext(DataContext)
     const handleDelete = ()=>{
         localStorage.setItem('createdCharacters', JSON.stringify([]))
-        setIdCreated(1)
+        setIdCreated(10000)
     }
     return(
         <div className={styles.character_form}>

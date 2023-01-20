@@ -12,29 +12,18 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchPage, getInitialChars } from '../../redux/actions.js';
 
 export default function CharactersList() {
-   let {character, characters, setCharacters} = useContext(DataContext)
+   // let {character, characters, setCharacters} = useContext(DataContext)
    let [isActiveShowAll, setIsActiveShowAll] = useState(true)
 
    
    //*todo dispatch
-
-
    let dispatch = useDispatch()
 
    useEffect(()=>{
       dispatch(getInitialChars())
    }, [])
 
-
    //*todo selector
-
-
-   //*characters
-   let {initialCharacters} = useSelector(state=>state)
-   useEffect(()=>{
-      setCharacters([...initialCharacters])
-   }, [initialCharacters])
-
 
    //*page
    let {page} = useSelector(state=>state)
@@ -44,12 +33,10 @@ export default function CharactersList() {
    }, [page])
 
 
-   //*matched characters
-   let {matched_characters} = useSelector(state=>state)
+   // //*matched characters
+   
+   let {matched_characters, searchInput} = useSelector(state=>state)
 
-   useEffect(()=>{
-      setCharacters([...matched_characters])
-   }, [matched_characters])
 
 
    return(
@@ -66,7 +53,7 @@ export default function CharactersList() {
             </div>
 
             {/* characters list */}
-            {characters.length>0 ?
+            {matched_characters.length>0 ?
                <div className={styles.characters_grid}>
                   {isActiveShowAll ? <NormalCharactersList/> : <CreatedCharactersList/>}
                </div>
@@ -76,7 +63,7 @@ export default function CharactersList() {
             
          </div>
          
-         {!character && <Page/>}
+         {!searchInput && <Page/>}
       </div>
    );
 }

@@ -6,13 +6,17 @@ import { faTriangleExclamation} from '@fortawesome/free-solid-svg-icons'
 import styles from "./Characters.module.css"
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
 export function NormalCharactersList(){
-    let {characters, setCharacters} = useContext(DataContext)
-    const handleRemoveChar = (id)=> setCharacters([...characters.filter(el=>el.id!==id)])
+    // let {characters, setCharacters} = useContext(DataContext)
+    let {matched_characters} = useSelector(state=>state)
+    // const handleRemoveChar = (id)=> setCharacters([...characters.filter(el=>el.id!==id)])
     return(
         <>
-            {characters.map((person, index)=><Character character={person} onRemoveChar={handleRemoveChar} key={index}/>)}
+            {matched_characters.map((person, index)=><Character character={person} 
+            // onRemoveChar={handleRemoveChar} 
+            key={index}/>)}
         </>
     )
 }

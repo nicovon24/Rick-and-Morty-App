@@ -1,10 +1,15 @@
-import {GET_INITIAL_CHARS, GET_CHAR_DETAILS, 
-ADD_PAGE_CHAR, DECREASE_PAGE_CHAR, MOVE_PAGE_CHAR, FETCH_PAGE
-} from "./actions.js"
+import {   
+    GET_INITIAL_CHARS, GET_CHAR_DETAILS, 
+    ADD_PAGE_CHAR, DECREASE_PAGE_CHAR, MOVE_PAGE_CHAR, FETCH_PAGE,
+    SEARCH_CHAR, 
+    SAVE_SEARCH_INPUT
+}
+from "./actions.js"
 
 const initialState = {
     matched_characters: [],
     initialCharacters: [],
+    searchInput: "",
     charDetails: {}, 
     page: 1
 }
@@ -20,6 +25,17 @@ const rootReducer = (state = initialState, {type, payload})=>{
         case GET_CHAR_DETAILS: return {
             ...state,
             charDetails: payload
+        }
+
+        case SEARCH_CHAR: return{
+            ...state,
+            matched_characters: payload ? payload : [],
+            page: 1
+        }
+
+        case SAVE_SEARCH_INPUT: return {
+            ...state,
+            searchInput: payload
         }
 
         case FETCH_PAGE: return{
