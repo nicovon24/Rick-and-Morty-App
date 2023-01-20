@@ -10,7 +10,7 @@ export default function Character({character, areCreatedOnes, onRemoveChar}) {
    let [statusColor, setStatusColor] = useState("")
    let [isFavorite, setIsFavorite] = useState(false)
 
-   let {favorites, setFavorites} = useContext(DataContext)
+   let {favorites, setFavorites, setInitialFavorites} = useContext(DataContext)
 
    //getting first episode name
    if(character.episode){
@@ -40,6 +40,10 @@ export default function Character({character, areCreatedOnes, onRemoveChar}) {
          setIsFavorite(true)
       }
    }
+
+   useEffect(()=>{
+      setInitialFavorites([...favorites])
+   }, [favorites])
 
    let some = favorites.some(el=>el.id===character.id)
 

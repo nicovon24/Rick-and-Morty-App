@@ -2,7 +2,7 @@
     font-family: 'Rick and Morty font';
     color: var(--font-orange);
     font-size: 2.5rem;
-    padding-bottom: 25px;
+    padding-bottom: 10px;
 }
 .favorites_container{
     background-color: var(--dark-gray);
@@ -31,7 +31,7 @@
 
 .character_name{
     color: var(--font-orange);
-    font-size: 2rem;
+    font-size: 1.8rem;
     text-align: center;
 }
 
@@ -40,6 +40,7 @@
     height: 280px;
     position: relative;
 }
+
 .none_favorites{
     color: var(--font-orange);
     font-size: 1.5rem;
@@ -47,16 +48,52 @@
     justify-content: center;
 }
 
-@media(min-width: 800px){
-    .favorites_subcontainer{
-        width: 40%;
-    }
+.form_favorites{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 30px 0px;
 }
 
-@media(min-width: 1000px){
+.form_favorites select{
+    font-size: 1.1rem;
+    padding: 8px 20px;
+    background-color: transparent;
+    border: 2px solid var(--font-orange);
+    color: var(--font-orange);
+    border-radius: 5px;
+    line-height: 1.2;
+    margin: 20px;
+    width: 200px;
+}
+
+.form_favorites option{
+    border-radius: 10px;
+    background-color: var(--dark-gray);
+}
+
+.fav_subcontainer img{
+    position: relative;
+    z-index: 1000;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+}
+
+@media(min-width: 800px){
+    /* .favorites_subcontainer{
+        width: 40%;
+    } */
+}
+
+@media(min-width: 900px){
     .favorites_subcontainer{
+        /* width: 60%; */
         grid-template-columns: 1fr 1fr;
-        width: 60%;
+    }
+    .form_favorites{
+        flex-direction: row;
     }
 }
 
@@ -64,13 +101,13 @@
 
 @media(min-width: 1300px){
     .favorites_subcontainer{
-        grid-template-columns: repeat(3, 1fr);
-        width: 90%;
+        grid-template-columns: repeat(3, 1fr); 
+        width: 90%; 
     }
 }
 
 @media(min-width: 1500px){
     .favorites_subcontainer{
-        width: 70%;
+        /* width: 70%; */
     }
 }

@@ -9,7 +9,7 @@ export default function About(){
             <Navbar/>
             <div className={styles.aboutContainer}>
                 <div className={styles.about}>
-                    <img src={require("../../assets/about.png")}/>
+                    <img src={require("../../assets/about.png")} alt="img about"/>
                     <div className={styles.about_text}>
                         <h2>About us</h2>
                         <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis eos quibusdam ipsam ad impedit eveniet, saepe maxime nihil quos magni ea cumque exercitationem iure molestias, velit, placeat nemo nisi nam?

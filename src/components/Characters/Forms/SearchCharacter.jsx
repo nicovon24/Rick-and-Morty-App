@@ -36,7 +36,7 @@ export default function SearchCharacter(){
                 <p className={styles.character_filterTitle}>Search a character by name</p>
                 <input className={`input_primary ${!character ? "input_invalid" : "input_valid"}`} value={searchInput} type="text" placeholder="Example: Rick..." 
                 onChange={handleChangeInput}></input>
-                {character ? "" : <p className={styles.uncompleted_data}>Uncompleted data</p>}
+                {searchInput ? "" : <p className={styles.uncompleted_data}>Uncompleted data</p>}
                 <div>
                     <button className="animated_btn" type="submit"><label>Submit</label></button>
                 </div>

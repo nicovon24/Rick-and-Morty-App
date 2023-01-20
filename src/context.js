@@ -7,16 +7,16 @@ const DataContext = React.createContext() //creating a context
 const DataProvider = ({ children }) => {
     let [idCreated, setIdCreated] = useState(10000)
     let [favorites, setFavorites] = useState([])
-
+    let [initialFavorites, setInitialFavorites] = useState([])
+    
     //dispatch
     let dispatch = useDispatch()
 
     //selector
     let initialCharactersRedux = useSelector(state=>state.initialCharacters)
-    
 
-
-    return <DataContext.Provider value={{idCreated, setIdCreated, favorites, setFavorites}}>{children}</DataContext.Provider>
+    return <DataContext.Provider value={{idCreated, setIdCreated, favorites, setFavorites,
+    initialFavorites, setInitialFavorites}}>{children}</DataContext.Provider>
 }
 
 export const useGlobalContext = () => { 
