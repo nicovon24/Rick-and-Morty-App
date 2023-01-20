@@ -29,7 +29,6 @@ export const getCharDetails = (id)=>{
     }
 }
 
-
 export const addPageChar = ()=>{
     return({type: ADD_PAGE_CHAR})
 }

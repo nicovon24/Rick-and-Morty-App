@@ -9,33 +9,48 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTriangleExclamation} from '@fortawesome/free-solid-svg-icons'
 import {NormalCharactersList, CreatedCharactersList} from "././Characters/Lists.jsx"
 import { useDispatch, useSelector } from 'react-redux';
-import { getInitialChars } from '../../redux/actions.js';
+import { fetchPage, getInitialChars } from '../../redux/actions.js';
 
 export default function CharactersList() {
    let {character, characters, setCharacters} = useContext(DataContext)
    let [isActiveShowAll, setIsActiveShowAll] = useState(true)
 
-   let dispatch = useDispatch()
    
+   //*todo dispatch
+
+
+   let dispatch = useDispatch()
+
    useEffect(()=>{
       dispatch(getInitialChars())
    }, [])
 
-   let state = useSelector(state=>state)
 
+   //*todo selector
+
+
+   //*characters
+   let {initialCharacters} = useSelector(state=>state)
    useEffect(()=>{
-      setCharacters([...state.initialCharacters])
-   }, [])
+      setCharacters([...initialCharacters])
+   }, [initialCharacters])
 
+
+   //*page
    let {page} = useSelector(state=>state)
 
    useEffect(()=>{
-      fetch(`https://rickandmortyapi.com/api/character?page=${page}`)
-         .then(resp=>resp.json())
-         .then(data=>{
-            setCharacters([...data.results])
-         })
+      dispatch(fetchPage(page))
    }, [page])
+
+
+   //*matched characters
+   let {matched_characters} = useSelector(state=>state)
+
+   useEffect(()=>{
+      setCharacters([...matched_characters])
+   }, [matched_characters])
+
 
    return(
       <div className={styles.characters_container}>

@@ -1,5 +1,5 @@
 import {GET_INITIAL_CHARS, GET_CHAR_DETAILS, 
-ADD_PAGE_CHAR, DECREASE_PAGE_CHAR, MOVE_PAGE_CHAR,
+ADD_PAGE_CHAR, DECREASE_PAGE_CHAR, MOVE_PAGE_CHAR, FETCH_PAGE
 } from "./actions.js"
 
 const initialState = {
@@ -13,12 +13,18 @@ const rootReducer = (state = initialState, {type, payload})=>{
     switch(type){
         case GET_INITIAL_CHARS: return {
             ...state,
+            matched_characters: payload,
             initialCharacters: payload
         }
 
         case GET_CHAR_DETAILS: return {
             ...state,
             charDetails: payload
+        }
+
+        case FETCH_PAGE: return{
+            ...state, 
+            matched_characters: payload
         }
 
         case ADD_PAGE_CHAR: return{
