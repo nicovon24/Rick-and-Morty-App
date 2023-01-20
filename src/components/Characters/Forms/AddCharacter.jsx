@@ -19,12 +19,13 @@ export default function FormAddCharacter(){
     //function to submit
     const handleSubmit = e=>{
         e.preventDefault()
+        let id = 10000
         
         //local storage only supports strings, use JSON.stringify and JSON.parse
         if(isFormFilled){
             let createdChars = JSON.parse(localStorage.getItem('createdCharacters'))
-            let newItems = [...createdChars, {...dataNewChar, id: idCreated}]
-            setIdCreated(prev=>prev+1)
+            if(createdChars.length>0) id = createdChars[createdChars.length-1].id+1
+            let newItems = [...createdChars, {...dataNewChar, id: id}]
             localStorage.setItem('createdCharacters', JSON.stringify(newItems))
             setDataNewChar({name: "", id: "", status: "", species: "", origin: "", location: "", image: ""})
         }
