@@ -56,6 +56,10 @@
     overflow: hidden; */
 }
 
+.active{
+    font-weight: 900;
+}
+
 @media(min-width: 800px){
     .nav{
         width: 80%;

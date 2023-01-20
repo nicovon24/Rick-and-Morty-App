@@ -37,32 +37,6 @@
     position: relative;
 }
 
-.character_btn{
-    border-radius: 50%;
-    padding: 3px 6px;
-    padding-top: 6px;
-    font-size: 1.2rem;
-    background-color: transparent;
-    margin-bottom: 10px;
-}
-
-.character_fav{
-    z-index: 9;
-    margin-left: 1px;
-    position: absolute;
-}
-
-.character_fav_inactive{
-    color: white;
-    border: 1px solid white;
-}
-
-.character_fav_active{
-    color: red;
-    background-color: white;
-    border: none;
-}
-
 
 .character_close{
     z-index: 100;
@@ -72,11 +46,6 @@
     background-color: red;
     position: relative;
     bottom: 1px;
-}
-
-.btn_close_container{ /* aligning it to the right */
-    text-align: right;
-    position: relative;
 }
 
 .character_info{
@@ -112,24 +81,26 @@
 
 .card{
     border-radius: 10px;
-    padding: 20px;
     background-color: var(--light-gray);
     font-size: 1.1rem;
+    max-width: 350px;
+    padding: 10px;
+    line-height: 1.3;
 }
 
 .card img{
-    width: 250px;
+    width: 100%;
     object-fit: cover;
+}
+
+.card p{
+    color: white;
 }
 
 .details_name{
     color: var(--font-orange);
     font-size: 2rem;
     padding-bottom: 15px;
-}
-
-.card p{
-    color: white;
 }
 
 .separate_first{
@@ -157,6 +128,26 @@
     width: 400px;
     margin: 30px auto;
     padding-bottom: 30px;
+}
+
+.fav_container{
+    padding: 10px;
+}
+
+.btn_container img{
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+}
+
+.fav_subcontainer img{
+    position: absolute;
+    z-index: 1000;
+}
+
+.delete_container{ /* aligning it to the right */
+    text-align: right;
+    position: relative;
 }
 
 

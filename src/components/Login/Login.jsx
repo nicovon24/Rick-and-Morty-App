@@ -60,7 +60,7 @@ export default function Login(){
                 </div>
 
                 <div className={styles.checkbox_container}>
-                    <input type="checkbox" name="cb_admin" for="cb_admin" id="cb_admin" value={isAdmin} onChange={()=>setIsAdmin(prev=>!prev)} />
+                    <input type="checkbox" name="cb_admin" htmlFor="cb_admin" id="cb_admin" value={isAdmin} onChange={()=>setIsAdmin(prev=>!prev)} />
                     <label name="cb_admin" htmlFor="cb_admin">Login as admin (do not need login data)</label>
                 </div>
 

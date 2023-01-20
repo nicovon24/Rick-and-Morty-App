@@ -1,20 +1,26 @@
 import { useEffect, useState } from "react"
 import {useParams, useNavigate} from "react-router-dom"
+import {useDispatch, useSelector} from "react-redux"
 import styles from "./Characters.module.css"
 import Navbar from "../../Navbar/Navbar.jsx"
+import { getCharDetails } from "../../../redux/actions"
 
 export default function CharacterDetails(){
-    let [character, setCharacter] = useState({})
+    // let [character, setCharacter] = useState({})
     let {id} = useParams()
     let navigateToHome = useNavigate()
+    let dispatch = useDispatch()
     
     useEffect(()=>{
-        fetch(`https://rickandmortyapi.com/api/character/${id}`)
-            .then(response=>response.json())
-            .then(data=>setCharacter({...data}))
+        dispatch(getCharDetails(id))
+        // fetch(`https://rickandmortyapi.com/api/character/${id}`)
+        //     .then(response=>response.json())
+        //     .then(data=>setCharacter({...data}))
     }, [])
     
     const handleBackToHome = ()=> navigateToHome("/characters")
+    let character = useSelector(state=>state.charDetails)
+    console.log(character)
     
     return(
         <>

@@ -1,16 +1,17 @@
-export let ADD_FAV = 'ADD_FAV'
-export let REMOVE_FAV = 'REMOVE_FAV'
+import axios from "axios"
 
-export const addFav = (character)=>{ //*adds or remove the fav
-    return { 
-        type: ADD_FAV, 
-        payload: character 
-    }  
+export let GET_ALL_CHARS= 'GET_ALL_CHARS'
+export let GET_CHAR_DETAILS = 'GET_CHAR_DETAILS'
+
+export const getCharDetails = (id)=>{
+    return async function(dispatch){
+        let response = await axios.get(`https://rickandmortyapi.com/api/character/${id}`)
+        console.log(response)
+        return dispatch({
+                type: GET_CHAR_DETAILS,
+                payload: response.data
+            }
+        )
+    }
 }
 
-export const removeFav = (id)=>{ //*adds or remove the fav
-    return { 
-        type: REMOVE_FAV, 
-        payload: id 
-    }  
-}

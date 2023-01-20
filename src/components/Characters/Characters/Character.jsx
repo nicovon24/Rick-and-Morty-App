@@ -4,8 +4,6 @@ import { useEffect, useState, useContext } from "react";
 import {DataContext} from "../../../context"
 import styles from "./Characters.module.css"
 import {Link} from "react-router-dom"
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHeart, faClose } from '@fortawesome/free-solid-svg-icons'
 
 export default function Character({character, areCreatedOnes, onRemoveChar}) {
    let [firstEpisodeName, setFirstEpisodeName] = useState("") 
@@ -54,18 +52,23 @@ export default function Character({character, areCreatedOnes, onRemoveChar}) {
          
          <div>
             {/* in created characters, we do not use the fav and close btn, we can add it! */
-               <>
-                  <button  className={`${styles.character_fav} ${!isFavorite ? styles.character_fav_inactive : styles.character_fav_active} ${styles.character_btn}`}
-                  onClick={()=>handleChangeFav()}>
-                     <FontAwesomeIcon icon={faHeart}/>
-                  </button>
-
-
-                  <div className={styles.btn_close_container}>
-                     <button className={`${styles.character_close} ${styles.character_btn}`}><FontAwesomeIcon icon={faClose}
-                     onClick={()=>onRemoveChar(character.id)}/></button>
+               <div className={styles.btn_container}>
+                  <div className={styles.fav_container}>
+                  <div className={styles.fav_subcontainer}>
+                     {!isFavorite 
+                     ? <img src={require("../../../assets/unfavorite.png")} alt="fav btn"
+                     onClick={handleChangeFav}/>
+                     : <img src={require("../../../assets/favorite.png")} alt="fav btn"
+                     onClick={handleChangeFav}/>}
                   </div>
-               </>
+
+
+                  <div className={styles.delete_container} >
+                     <img src={require("../../../assets/delete_blue.png")}  alt="delete btn"
+                     onClick={()=>onRemoveChar(character.id)}/>
+                  </div>
+               </div>
+               </div>
             }
             <Link to={`/characters/${character.id}`}><img src={character?.image} alt=""/></Link>
          </div>
