@@ -14,7 +14,7 @@
     display: grid;
     grid-template-columns: 1fr;
     grid-gap: 30px;
-    width: 70%;
+    width: 60%;
     margin: 0 auto;
 }
 
@@ -91,6 +91,7 @@
     .favorites_subcontainer{
         /* width: 60%; */
         grid-template-columns: 1fr 1fr;
+        width: 70%;
     }
     .form_favorites{
         flex-direction: row;
@@ -102,12 +103,12 @@
 @media(min-width: 1300px){
     .favorites_subcontainer{
         grid-template-columns: repeat(3, 1fr); 
-        width: 90%; 
+        width: 80%; 
     }
 }
 
 @media(min-width: 1500px){
     .favorites_subcontainer{
-        /* width: 70%; */
+        width: 70%;
     }
 }
