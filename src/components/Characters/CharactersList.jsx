@@ -8,10 +8,26 @@ import styles from "./Characters.module.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTriangleExclamation} from '@fortawesome/free-solid-svg-icons'
 import {NormalCharactersList, CreatedCharactersList} from "././Characters/Lists.jsx"
+import { useDispatch, useSelector } from 'react-redux';
+import { getInitialChars } from '../../redux/actions.js';
 
 export default function CharactersList() {
-   let {page, character, characters, setCharacters} = useContext(DataContext)
+   let {character, characters, setCharacters} = useContext(DataContext)
    let [isActiveShowAll, setIsActiveShowAll] = useState(true)
+
+   let dispatch = useDispatch()
+   
+   useEffect(()=>{
+      dispatch(getInitialChars())
+   }, [])
+
+   let state = useSelector(state=>state)
+
+   useEffect(()=>{
+      setCharacters([...state.initialCharacters])
+   }, [])
+
+   let {page} = useSelector(state=>state)
 
    useEffect(()=>{
       fetch(`https://rickandmortyapi.com/api/character?page=${page}`)

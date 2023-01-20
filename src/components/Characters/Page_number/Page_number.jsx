@@ -3,12 +3,26 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowRight, faArrowLeft, faBackwardFast, faForwardFast } from '@fortawesome/free-solid-svg-icons'
 import {DataContext} from "../../../context.js"
 import styles from "./Page_number.module.css"
+import { useDispatch, useSelector } from "react-redux"
+import { addPageChar, decreasePageChar, movePageChar } from "../../../redux/actions.js"
 
 export default function Page(){
-    let {page, setPage} = useContext(DataContext)
+    // let {page, setPage} = useContext(DataContext)
+    let dispatch = useDispatch()
 
-    const addPage = ()=> setPage(prev=>prev<41 ? prev+1 : prev)
-    const decreasePage = ()=>setPage(prev=>prev>1 ? prev-1 : prev)
+    let {page} = useSelector(state=>state)
+
+    const addPage = ()=> {
+        dispatch(addPageChar())
+    }
+
+    const decreasePage = ()=> {
+        dispatch(decreasePageChar())
+    }
+
+    const movePage = (num)=> {
+        dispatch(movePageChar(num))
+    }
 
     return(
         <div className={styles.page_container}>
@@ -31,8 +45,8 @@ export default function Page(){
                     </button><br></br>
                 </div>
                 <div className={styles.page_menu_bottom}>
-                    <button onClick={()=>setPage(1)}><FontAwesomeIcon icon={faBackwardFast}/> Back to 1</button>
-                    <button onClick={()=>setPage(41)}>To 41 <FontAwesomeIcon icon={faForwardFast}/></button>
+                    <button onClick={()=>movePage(1)}><FontAwesomeIcon icon={faBackwardFast}/> Back to 1</button>
+                    <button onClick={()=>movePage(41)}>To 41 <FontAwesomeIcon icon={faForwardFast}/></button>
                 </div>
             </div>
             

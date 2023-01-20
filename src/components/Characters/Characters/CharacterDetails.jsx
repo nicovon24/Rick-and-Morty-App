@@ -13,14 +13,10 @@ export default function CharacterDetails(){
     
     useEffect(()=>{
         dispatch(getCharDetails(id))
-        // fetch(`https://rickandmortyapi.com/api/character/${id}`)
-        //     .then(response=>response.json())
-        //     .then(data=>setCharacter({...data}))
     }, [])
     
     const handleBackToHome = ()=> navigateToHome("/characters")
     let character = useSelector(state=>state.charDetails)
-    console.log(character)
     
     return(
         <>

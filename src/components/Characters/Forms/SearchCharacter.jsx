@@ -1,10 +1,20 @@
 import { useContext, useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import {DataContext} from "../../../context.js"
+import { getInitialChars } from '../../../redux/actions.js'
 import styles from "./Forms.module.css"
 
 export default function SearchCharacter(){
     let [matchedCharacters, setMatchedCharacters] = useState([]) //characters which match the filter
-    let {setCharacters, initialCharacters, character, setCharacter} = useContext(DataContext)
+    let {setCharacters, character, setCharacter} = useContext(DataContext)
+
+    let dispatch = useDispatch()
+
+    useEffect(()=>{
+        dispatch(getInitialChars())
+    }, [])
+
+    let initialCharacters = useSelector(state=>state.initialCharacters)
 
     const handleSubmit = e=>{
         e.preventDefault()
@@ -26,7 +36,7 @@ export default function SearchCharacter(){
     }, [matchedCharacters])
 
     useEffect(()=>{
-        if(!character) setCharacters([...initialCharacters]) //the input null, we restore the characters
+        if(!character) setCharacters([...initialCharacters ]) //the input null, we restore the characters
     }, [character])
 
     return(

@@ -1,4 +1,6 @@
 import React, { useContext, useEffect, useState} from 'react'
+import {useDispatch, useSelector} from "react-redux"
+import { getInitialChars } from './redux/actions'
 
 const DataContext = React.createContext() //creating a context
 
@@ -10,19 +12,20 @@ const DataProvider = ({ children }) => {
     let [idCreated, setIdCreated] = useState(1)
     let [favorites, setFavorites] = useState([])
 
+    //dispatch
+    let dispatch = useDispatch()
     useEffect(()=>{
-      try{
-        fetch("https://rickandmortyapi.com/api/character")
-          .then(response=>response.json())
-          .then(data=>{
-            setCharacters([...data.results])
-            setInitialCharacters([...data.results])
-          })
-      }
-      catch(err){
-        alert("Error: " + err)
-      }
+      dispatch(getInitialChars)
     }, [])
+
+    //selector
+    let initialCharactersRedux = useSelector(state=>state.initialCharacters)
+    
+    useEffect(()=>{
+      setInitialCharacters([...initialCharactersRedux])
+      setCharacters([...initialCharactersRedux])
+    }, [])
+
 
     return <DataContext.Provider value={{initialCharacters, characters, setCharacters, character, setCharacter,
     page, setPage, idCreated, setIdCreated, favorites, setFavorites}}>{children}</DataContext.Provider>
