@@ -1,6 +1,3 @@
-// import {useSelector} from "react-redux"
-import { useContext } from "react"
-import { DataContext } from "../../context"
 import styles from "./Favorites.module.css"
 import Navbar from "../../components/Navbar/Navbar.jsx"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -8,25 +5,29 @@ import { faTriangleExclamation} from '@fortawesome/free-solid-svg-icons'
 import CharacterFavorites from "./CharacterFavorites"
 import { useState } from "react"
 import { useEffect } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { filterFavoriteAscendant, filterFavoriteDescendant, filterFavoriteGender, restartMatchedFav } from "../../redux/actions"
 
 export default function Favorites(){
-    let {favorites, setFavorites, initialFavorites} = useContext(DataContext)
+    // let {favorites, setFavorites, initialFavorites} = useContext(DataContext)
+    let {matchedFavorites, initialFavorites} = useSelector(state=>state)
     let [order, setOrder] = useState("")
     let [gender, setGender] = useState("")
 
-    const handleChangeOrder = (e)=>setOrder(e.target.value)
-    const handleChangeGender = (e)=>setGender(e.target.value)
+    const handleChangeOrder = (e) => setOrder(e.target.value)
+    const handleChangeGender = (e)=> setGender(e.target.value)
+
+    let dispatch = useDispatch()
 
     useEffect(()=>{
-        setFavorites([...initialFavorites])
-
+        dispatch(restartMatchedFav())
         //ordering by order
         switch(order){
             case "ascendent":
-                setFavorites([...initialFavorites.sort((a,b)=>a.name.localeCompare(b.name))])
+                dispatch(filterFavoriteAscendant())
                 break;
             case "decrement":
-                setFavorites([...initialFavorites.sort((a,b)=>b.name.localeCompare(a.name))])
+                dispatch(filterFavoriteDescendant())
                 break;
             default:
                 break;
@@ -35,16 +36,16 @@ export default function Favorites(){
         //ordering by gender
         switch(gender){
             case "genderless":
-                setFavorites([...initialFavorites.filter(char=>char.gender.toLowerCase()==="genderless")])
+                dispatch(filterFavoriteGender("genderless"))
                 break;
             case "male":
-                setFavorites([...initialFavorites.filter(char=>char.gender.toLowerCase()===gender)])
+                dispatch(filterFavoriteGender("male"))
                 break;
             case "female":
-                setFavorites([...initialFavorites.filter(char=>char.gender.toLowerCase()===gender)])
+                dispatch(filterFavoriteGender("female"))
                 break;
             case "unknown":
-                setFavorites([...initialFavorites.filter(char=>char.gender.toLowerCase()===gender)])
+                dispatch(filterFavoriteGender("unknown"))
                 break;
             default:
                 break;
@@ -74,9 +75,9 @@ export default function Favorites(){
                             <option value="unknown">unknown</option>
                         </select>
                     </form>
-                    {favorites.length>0 ?
+                    {matchedFavorites.length>0 ?
                     <div className={`${styles.favorites_subcontainer}`}>
-                        {favorites.map(el=><CharacterFavorites character={el} key={el.id}/>)}
+                        {matchedFavorites.map(el=><CharacterFavorites character={el} key={el.id}/>)}
                     </div>
                     : <div className={styles.none_favorites}>
                     <FontAwesomeIcon icon={faTriangleExclamation}/><p className={styles.none_favorites}>No favorites matches the condition</p>

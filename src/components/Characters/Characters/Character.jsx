@@ -1,16 +1,20 @@
 import { useEffect, useState, useContext } from "react";
 // import {useDispatch, useSelector} from "react-redux"
 // import {addFav, removeFav} from "../../../redux/actions.js"
-import {DataContext} from "../../../context"
+// import {DataContext} from "../../../context"
 import styles from "./Characters.module.css"
 import {Link} from "react-router-dom"
+import { useDispatch, useSelector } from "react-redux";
+import { addFavorite, removeFavorite } from "../../../redux/actions";
 
 export default function Character({character, areCreatedOnes, onRemoveChar}) {
    let [firstEpisodeName, setFirstEpisodeName] = useState("") 
    let [statusColor, setStatusColor] = useState("")
    let [isFavorite, setIsFavorite] = useState(false)
 
-   let {favorites, setFavorites, setInitialFavorites} = useContext(DataContext)
+   // let {favorites, setFavorites, setInitialFavorites} = useContext(DataContext)
+
+   let dispatch = useDispatch()
 
    //getting first episode name
    if(character.episode){
@@ -32,20 +36,18 @@ export default function Character({character, areCreatedOnes, onRemoveChar}) {
 
    const handleChangeFav = ()=> {
       if(isFavorite){
-         setFavorites([...favorites.filter(el=>el.id!==character.id)])
          setIsFavorite(false)
+         dispatch(removeFavorite(character.id))
       }
       else{
-         setFavorites([...favorites, character])
          setIsFavorite(true)
+         dispatch(addFavorite(character))
       }
    }
 
-   useEffect(()=>{
-      setInitialFavorites([...favorites])
-   }, [favorites])
+   let {initialFavorites} = useSelector(state=>state)
 
-   let some = favorites.some(el=>el.id===character.id)
+   let some = initialFavorites.some(el=>el.id===character.id)
 
    useEffect(()=>{
       some ? setIsFavorite(true) : setIsFavorite(false)
@@ -74,7 +76,7 @@ export default function Character({character, areCreatedOnes, onRemoveChar}) {
                </div>
                </div>
             }
-            <Link to={`/characters/${character.id}`}><img src={character?.image} alt=""/></Link>
+            <Link to={`/characters/${character.id}`}><img src={character?.image} alt="character img"/></Link>
          </div>
          
          <div className={styles.character_info}>
@@ -115,26 +117,3 @@ export default function Character({character, areCreatedOnes, onRemoveChar}) {
       </div>
    );
 }
-
-
-// const dispatch = useDispatch()
-
-// let listFavs = useSelector(state=>state.listFavs)
-
-// useEffect(()=>{
-//    dispatch(addFav(character))
-//    dispatch(removeFav(character.id))
-// }, [])
-
-// const handleChangeFav = (id)=>{
-//    if(isFavorite){
-//       setIsFavorite(false)
-//       dispatch(removeFav(id))
-//    } else{
-//       setIsFavorite(true)
-//       dispatch(addFav(character))
-//    }
-// }
-
-// useEffect(()=>{
-// }, [listFavs])

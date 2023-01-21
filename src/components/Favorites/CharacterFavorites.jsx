@@ -1,15 +1,14 @@
 import styles from "./Favorites.module.css"
 import {Link} from "react-router-dom"
-import { useContext } from "react"
-import { DataContext } from "../../context"
+import { useDispatch } from "react-redux"
+import { removeFavorite } from "../../redux/actions"
 
 export default function CharacterFavorites({character}){
-    let {favorites, setFavorites, setInitialFavorites} = useContext(DataContext)
+    let dispatch = useDispatch()
     const handleChangeFav = ()=>{
-        let filter = favorites.filter(el=>el.id!==character.id)
-        setFavorites([...filter])
-        setInitialFavorites([...filter])
+        dispatch(removeFavorite(character.id))
     }
+    
     return(
         <div className={styles.character_item}>
             <div className={styles.character_info}>

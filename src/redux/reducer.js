@@ -1,7 +1,7 @@
 import {   
-    GET_INITIAL_CHARS, GET_CHAR_DETAILS,  DELETE_CHAR, SEARCH_CHAR,
+    GET_INITIAL_CHARS, GET_CHAR_DETAILS,  DELETE_CHAR, SEARCH_CHAR, SAVE_SEARCH_INPUT,
     ADD_PAGE_CHAR, DECREASE_PAGE_CHAR, MOVE_PAGE_CHAR, FETCH_PAGE,
-    SAVE_SEARCH_INPUT
+    ADD_FAVORITE, REMOVE_FAVORITE, FILTER_FAVORITE_GENDER, FILTER_FAVORITE_ASCENDANT, FILTER_FAVORITE_DESCENDANT, RESTART_MATCHED_FAV
 }
 from "./actions.js"
 
@@ -10,7 +10,9 @@ const initialState = {
     initialCharacters: [],
     searchInput: "",
     charDetails: {}, 
-    page: 1
+    page: 1,
+    matchedFavorites: [],
+    initialFavorites: []
 }
 
 const rootReducer = (state = initialState, {type, payload})=>{
@@ -62,6 +64,38 @@ const rootReducer = (state = initialState, {type, payload})=>{
         case MOVE_PAGE_CHAR: return{
             ...state,
             page: payload
+        }
+
+        case ADD_FAVORITE: return {
+            ...state,
+            matchedFavorites: [...state.matchedFavorites, payload],
+            initialFavorites: [...state.matchedFavorites, payload]
+        }
+
+        case REMOVE_FAVORITE: return {
+            ...state,
+            matchedFavorites: state.matchedFavorites.filter(fav=>fav.id!==payload),
+            initialFavorites: state.initialFavorites.filter(fav=>fav.id!==payload)
+        }
+
+        case FILTER_FAVORITE_GENDER: return {
+            ...state,
+            matchedFavorites: state.matchedFavorites.filter(fav=>fav?.gender.toLowerCase()===payload)
+        }
+
+        case FILTER_FAVORITE_ASCENDANT: return {
+            ...state,
+            matchedFavorites: state.matchedFavorites.sort((a,b)=>a.name.localeCompare(b.name))
+        }
+
+        case FILTER_FAVORITE_DESCENDANT: return {
+            ...state,
+            matchedFavorites: state.matchedFavorites.sort((a,b)=>b.name.localeCompare(a.name))
+        }
+
+        case RESTART_MATCHED_FAV: return{ //for filters
+            ...state, 
+            matchedFavorites: state.initialFavorites
         }
 
         default: return {

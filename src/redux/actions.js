@@ -1,14 +1,23 @@
 import axios from "axios"
 
+
 export let GET_INITIAL_CHARS= 'GET_INITIAL_CHARS'
 export let GET_CHAR_DETAILS = 'GET_CHAR_DETAILS'
 export let DELETE_CHAR = 'DELETE_CHAR'
+export let SEARCH_CHAR = 'SEARCH_CHAR'
+export let SAVE_SEARCH_INPUT = 'SAVE_SEARCH_INPUT'
+
 export let ADD_PAGE_CHAR= 'ADD_PAGE_CHAR'
 export let DECREASE_PAGE_CHAR = 'DECREASE_PAGE_CHAR'
 export let MOVE_PAGE_CHAR = 'MOVE_PAGE_CHAR'
 export let FETCH_PAGE = 'FETCH_PAGE'
-export let SEARCH_CHAR = 'SEARCH_CHAR'
-export let SAVE_SEARCH_INPUT = 'SAVE_SEARCH_INPUT'
+
+export let ADD_FAVORITE    = 'ADD_FAVORITE'
+export let REMOVE_FAVORITE = 'REMOVE_FAVORITE'
+export let FILTER_FAVORITE_GENDER = 'FILTER_FAVORITE_GENDER'
+export let FILTER_FAVORITE_ASCENDANT = 'FILTER_FAVORITE_ASCENDANT'
+export let FILTER_FAVORITE_DESCENDANT = 'FILTER_FAVORITE_DESCENDANT'
+export let RESTART_MATCHED_FAV = 'RESTART_MATCHED_FAV'
 
 export const getInitialChars = ()=>{
     return async function(dispatch){
@@ -77,4 +86,43 @@ export const decreasePageChar = ()=>{
 
 export const movePageChar = (pageNum) => {
     return {type: MOVE_PAGE_CHAR, payload: pageNum}
+}
+
+export const addFavorite = (character) => {
+    return {
+        type: ADD_FAVORITE,
+        payload: character
+    }
+}
+
+export const removeFavorite = (id) => {
+    return {
+        type: REMOVE_FAVORITE,
+        payload: id
+    }
+}
+
+export const filterFavoriteGender = (gender)=>{
+    return {
+        type: FILTER_FAVORITE_GENDER,
+        payload: gender
+    }
+}
+
+export const filterFavoriteAscendant = ()=>{
+    return {
+        type: FILTER_FAVORITE_ASCENDANT
+    }
+}
+
+export const filterFavoriteDescendant = ()=>{
+    return {
+        type: FILTER_FAVORITE_DESCENDANT
+    }
+}   
+
+export const restartMatchedFav = ()=>{ //for filters
+    return {
+        type: RESTART_MATCHED_FAV
+    }
 }

@@ -1,2 +1,1 @@
-//* agregar formulario de agregar personaje
-//* agregar botón borrar y favoritos capaz
+//* agregar imagenes a formulario de crear character

@@ -2,11 +2,13 @@ import {NavLink} from "react-router-dom"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart, faUser} from '@fortawesome/free-solid-svg-icons'
 import styles from "./Navbar.module.css"
-import { useContext } from "react"
-import { DataContext } from "../../context"
+import { useSelector } from "react-redux"
+// import { useContext } from "react"
+// import { DataContext } from "../../context"
 
 export default function Navbar(){
-    let {favorites} = useContext(DataContext)
+    // let {favorites} = useContext(DataContext)
+    let {initialFavorites} = useSelector(state=>state)
     return(
         <nav className={styles.nav}>
             {/* <img className={styles.logo} src="https://wallpapercave.com/wp/wp5794980.jpg"/> */}
@@ -24,7 +26,7 @@ export default function Navbar(){
 
                 <li className={styles.nav_list}>
                     <NavLink className={styles.nav_links} to="/favorites">
-                    <FontAwesomeIcon className={styles.nav_icon} icon={faHeart}/>Favorites {`(${favorites?.length})`}</NavLink>
+                    <FontAwesomeIcon className={styles.nav_icon} icon={faHeart}/>Favorites {`(${initialFavorites?.length})`}</NavLink>
                 </li>
             </ul>
         </nav>

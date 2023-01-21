@@ -3,14 +3,15 @@ import {DataContext} from "../../../context.js"
 import styles from "./Forms.module.css"
 
 export default function FormAddCharacter(){
-    let [dataNewChar, setDataNewChar] = useState({name: "", status: "", species: "", origin: "", location: "", image: ""})
+    let [dataNewChar, setDataNewChar] = useState({name: "", status: "", species: "", origin: "", gender: "", image: ""})
 
     //arrays to define the select options
     let arrSpecies = ['Human', 'Alien', 'Humanoid', 'Animal', 'Robot', 'Disease', 'Mythological Creature', 'Poopybutthole', 'unknown', 'Cronenberg'].sort((a,b)=>a.localeCompare(b))
     let arrStatus  = ['Alive', 'Dead', 'unknown']
     let arrOrigins = ['Earth (C-137)', 'Earth (Replacement Dimension)', 'Earth (K-83)', 'unknown']
+    let arrGender  = ["genderless", "male", "female", "unknown"]
 
-    let isFormFilled = dataNewChar.name!=="" && dataNewChar.status!=="" && dataNewChar.species!=="" && dataNewChar.origin!=="" && dataNewChar.location!=="" //true or false
+    let isFormFilled = dataNewChar.name!=="" && dataNewChar.status!=="" && dataNewChar.species!=="" && dataNewChar.origin!=="" && dataNewChar.gender!=="" //true or false
 
     //function to submit
     const handleSubmit = e=>{
@@ -23,7 +24,7 @@ export default function FormAddCharacter(){
             if(createdChars.length>0) id = createdChars[createdChars.length-1].id+1
             let newItems = [...createdChars, {...dataNewChar, id: id}]
             localStorage.setItem('createdCharacters', JSON.stringify(newItems))
-            setDataNewChar({name: "", id: "", status: "", species: "", origin: "", location: "", image: ""})
+            setDataNewChar({name: "", id: "", status: "", species: "", origin: "", gender: "", image: ""})
         }
         else console.log("uncompleted data")
     }
@@ -53,10 +54,10 @@ export default function FormAddCharacter(){
                 {arrOrigins.map((el,index)=><option value={el} key={index}>{el}</option>)}
             </select>
 
-            <label className={styles.add_property} htmlFor="location">Location:</label>
-            <select className={`input_primary ${!dataNewChar.location ? "input_invalid" : "input_valid"}`} value={dataNewChar.location} name="location" onChange={e=>setDataNewChar({...dataNewChar, location: e.target.value})}>
+            <label className={styles.add_property} htmlFor="gender">Gender:</label>
+            <select className={`input_primary ${!dataNewChar.gender ? "input_invalid" : "input_valid"}`} value={dataNewChar.gender} name="gender" onChange={e=>setDataNewChar({...dataNewChar, gender: e.target.value})}>
                 <option value="">Select an option...</option>
-                {arrOrigins.map((el,index)=><option value={el} key={index}>{el}</option>)}
+                {arrGender.map((el,index)=><option value={el} key={index}>{el}</option>)}
             </select>
 
             {/* <label className={styles.add_property}>Image:</label> 
