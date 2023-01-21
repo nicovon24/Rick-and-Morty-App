@@ -50,6 +50,7 @@ export default function Favorites(){
                 break;
         }
     }, [order, gender])
+    
     return(
         <>
             <Navbar/>

@@ -1,21 +1,23 @@
 import Character from './Character.jsx';
-import {useContext} from 'react'
-import {DataContext} from "../../../context.js"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTriangleExclamation} from '@fortawesome/free-solid-svg-icons'
 import styles from "./Characters.module.css"
 import { useState } from 'react';
 import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { deleteChar } from '../../../redux/actions.js';
 
 export function NormalCharactersList(){
-    // let {characters, setCharacters} = useContext(DataContext)
+
+    let dispatch = useDispatch()
     let {matched_characters} = useSelector(state=>state)
-    // const handleRemoveChar = (id)=> setCharacters([...characters.filter(el=>el.id!==id)])
+
+    const handleRemoveChar = (id)=> dispatch(deleteChar(id))
+
     return(
         <>
             {matched_characters.map((person, index)=><Character character={person} 
-            // onRemoveChar={handleRemoveChar} 
+            onRemoveChar={()=>handleRemoveChar(person.id)} 
             key={index}/>)}
         </>
     )

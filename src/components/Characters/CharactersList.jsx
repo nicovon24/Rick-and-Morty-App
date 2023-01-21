@@ -1,5 +1,4 @@
-import { useState, useEffect, useContext  } from 'react'
-import {DataContext} from "../../context.js"
+import { useState, useEffect } from 'react'
 import SearchCharacter from "./Forms/SearchCharacter.jsx"
 import FormAddCharacter from "./Forms/AddCharacter.jsx"
 import AddButtons from './Forms/AddButtons.jsx';

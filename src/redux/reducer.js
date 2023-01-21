@@ -1,7 +1,6 @@
 import {   
-    GET_INITIAL_CHARS, GET_CHAR_DETAILS, 
+    GET_INITIAL_CHARS, GET_CHAR_DETAILS,  DELETE_CHAR, SEARCH_CHAR,
     ADD_PAGE_CHAR, DECREASE_PAGE_CHAR, MOVE_PAGE_CHAR, FETCH_PAGE,
-    SEARCH_CHAR, 
     SAVE_SEARCH_INPUT
 }
 from "./actions.js"
@@ -26,6 +25,13 @@ const rootReducer = (state = initialState, {type, payload})=>{
             ...state,
             charDetails: payload
         }
+
+        case DELETE_CHAR: 
+            return {
+                ...state, 
+                matched_characters: state.matched_characters.filter(el=>el.id!==payload)
+                /* hacer delete favorite tambien */
+            }
 
         case SEARCH_CHAR: return{
             ...state,

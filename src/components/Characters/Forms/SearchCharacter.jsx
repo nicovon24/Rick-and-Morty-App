@@ -5,7 +5,6 @@ import { getInitialChars, saveSearchInput, searchChar } from '../../../redux/act
 import styles from "./Forms.module.css"
 
 export default function SearchCharacter(){
-    let [character, setCharacter] = useState("")
 
     let dispatch = useDispatch()
 
@@ -18,7 +17,6 @@ export default function SearchCharacter(){
     }
 
     let {searchInput} = useSelector(state=>state)
-    console.log(searchInput)
 
     const handleSubmit = e=>{
         e.preventDefault()
@@ -28,15 +26,17 @@ export default function SearchCharacter(){
 
     useEffect(()=>{
         if(!searchInput) dispatch(getInitialChars()) //the input null, we restore the characters
-    }, [character])
+    }, [searchInput])
 
     return(
         <>
             <form className={styles.character_form} onSubmit={handleSubmit}>
                 <p className={styles.character_filterTitle}>Search a character by name</p>
-                <input className={`input_primary ${!character ? "input_invalid" : "input_valid"}`} value={searchInput} type="text" placeholder="Example: Rick..." 
+                
+                <input className={`input_primary ${!searchInput ? "input_invalid" : "input_valid"}`} value={searchInput} type="text" placeholder="Example: Rick..." 
                 onChange={handleChangeInput}></input>
                 {searchInput ? "" : <p className={styles.uncompleted_data}>Uncompleted data</p>}
+
                 <div>
                     <button className="animated_btn" type="submit"><label>Submit</label></button>
                 </div>
