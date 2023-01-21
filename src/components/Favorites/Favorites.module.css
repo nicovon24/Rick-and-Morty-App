@@ -24,7 +24,6 @@
     font-family: sans-serif;
     border-radius: 10px;
     padding: 10px;
-    padding-top: 20px;
     margin: 0 auto;
     width: 85%;
 }
@@ -71,6 +70,10 @@
 .form_favorites option{
     border-radius: 10px;
     background-color: var(--dark-gray);
+}
+
+.fav_subcontainer{
+    padding: 5px 0px;
 }
 
 .fav_subcontainer img{

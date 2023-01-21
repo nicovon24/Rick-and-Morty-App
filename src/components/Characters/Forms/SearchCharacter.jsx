@@ -1,6 +1,5 @@
-import { useContext, useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import {DataContext} from "../../../context.js"
 import { getInitialChars, saveSearchInput, searchChar } from '../../../redux/actions.js'
 import styles from "./Forms.module.css"
 

@@ -15,7 +15,7 @@ export default function CharacterFavorites({character}){
             <div className={styles.character_info}>
 
                 <div className={styles.fav_subcontainer}>
-                    <img src={require("../../assets/favorite.png")} alt="fav btn"
+                    <img src={require("../../assets/delete_blue.png")} alt="delete btn"
                     onClick={handleChangeFav}/>
                 </div>
 

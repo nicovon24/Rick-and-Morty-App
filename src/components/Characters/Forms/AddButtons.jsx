@@ -1,5 +1,3 @@
-import { useContext } from "react"
-import {DataContext} from "../../../context.js"
 import styles from "./Forms.module.css"
 
 export default function AddButtons({onShowCreatedChars, isActiveShowAll}){

@@ -1,12 +1,8 @@
-import { useEffect } from "react"
 import { useState, useContext } from "react"
 import {DataContext} from "../../../context.js"
 import styles from "./Forms.module.css"
 
 export default function FormAddCharacter(){
-    //input states
-    let {idCreated, setIdCreated} = useContext(DataContext) //*id, will start in 1 and go on, we restart it after the btn remove all created chars
-
     let [dataNewChar, setDataNewChar] = useState({name: "", status: "", species: "", origin: "", location: "", image: ""})
 
     //arrays to define the select options

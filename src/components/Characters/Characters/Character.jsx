@@ -64,7 +64,7 @@ export default function Character({character, areCreatedOnes, onRemoveChar}) {
                      onClick={handleChangeFav}/>
                      : <img src={require("../../../assets/favorite.png")} alt="fav btn"
                      onClick={handleChangeFav}/>}
-                  </div>
+                  </div>   
 
 
                   <div className={styles.delete_container} >
@@ -100,7 +100,14 @@ export default function Character({character, areCreatedOnes, onRemoveChar}) {
                </div>
             </>
             }
-            {areCreatedOnes && <div className="character-id">
+            {!areCreatedOnes ? 
+            <></>
+            // TODO IMPLEMENTAR
+            // <div>
+            //     <p className={styles.character_subtitle}>Number of visits:</p>
+            //     <p></p>
+            // </div>
+            : <div className="character-id">
                <p className={styles.character_subtitle}>ID:</p>
                <p>{character.id}</p>
             </div>}
