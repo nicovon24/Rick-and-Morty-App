@@ -7,19 +7,19 @@
     background-size:cover;
 }
 
-.login_subcontainer{
+.subcontainer{
     height: 90vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
-.login_container h1{
+.container h1{
     color: rgb(26, 202, 26); 
     text-align: center;
 }
 
-.login_form{
+.form{
     margin: 0 auto;
     width: 400px;
     display: flex;
@@ -32,15 +32,15 @@
     padding: 30px 60px;
 }
 
-.login_form *, .btn_hide{
+.form *, .btn_hide{
     background-color: transparent;
 }
 
-.login_form input, .login_form label{
+.form input, .form label{
     color: white;
 }
 
-.login_form input::placeholder{
+.form input::placeholder{
     color: rgb(174, 167, 167);
 }
 
@@ -48,6 +48,7 @@
     font-size: 1.8rem;
     color: rgb(26, 202, 26);
     font-family: 'Rick and Morty font';
+    text-align: center;
 }
 
 .input, .divPassword{
@@ -151,9 +152,4 @@ hr{
     width: 100%;
     border-bottom: 1px solid rgb(174, 167, 167);
     margin-bottom: 25px;
-}
-
-
-@media(min-width: 700px){
-
 }

@@ -44,8 +44,6 @@ export default function Navbar(){
                     onClick={()=>setIsActive(prev=>!prev)}/>
                 </div>
                 
-                {/* <div className={styles.menu_phone}>
-                     */}
                 <ul className={`${styles.menu_phone} ${isActive ? styles.menu_active : styles.menu_inactive}`}>
                     <div className={`${styles.menu_phone_subcontainer} 
                     `}>
@@ -74,7 +72,6 @@ export default function Navbar(){
                         </li>
                     </div>
                 </ul>
-                {/* </div> */}
             </div>
         </nav>
     )

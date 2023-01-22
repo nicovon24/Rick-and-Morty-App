@@ -7,6 +7,8 @@ import About from './components/About/About.jsx'
 import Login from './components/Login/Login.jsx'
 import CharacterDetails from './components/Characters/Characters/CharacterDetails.jsx'
 import Favorites from './components/Favorites/Favorites.jsx'
+import SignIn from "./components/Sign_in/Sign_in.jsx"
+import Profile from './components/Profile/Profile'
 
 function App () {
   return (
@@ -18,6 +20,8 @@ function App () {
         <Route exact path="/characters/:id" element={<CharacterDetails/>}></Route>
         <Route exact path="/about" element={<About/>}></Route>
         <Route exact path="/favorites" element={<Favorites/>}></Route>
+        <Route exact path="/sign_in" element={<SignIn/>}></Route>
+        <Route exact path="/profile" element={<Profile/>}></Route>
         <Route path="/*" element={<Error/>}></Route> {/* default */}
       </Routes>
     </div>

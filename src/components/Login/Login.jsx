@@ -43,11 +43,13 @@ export default function Login(){
         }
     }
 
+    const redirectToSignIn = useNavigate("/sign_in")
+
     return(
         <div className={styles.login_container}>
-            <div className={styles.login_subcontainer}>
+            <div className={styles.subcontainer}>
                 <h1 className={styles.h1}>USER LOGIN</h1>
-                <form className={styles.login_form} onSubmit={handleSubmitForm}>
+                <form className={styles.form} onSubmit={handleSubmitForm}>
                     <input className={`${styles.input} ${styles.input_name}`} placeholder="Username..."
                     onChange={e=>setName(e.target.value)}></input>
 
@@ -71,7 +73,8 @@ export default function Login(){
                     <hr />
 
                     <div className={styles.sign_in_container}>
-                        <NavLink className={styles.sign_in}>Sign in</NavLink>
+                        <NavLink to="/sign_in"
+                        className={styles.sign_in}>Sign in</NavLink>
                     </div>
 
                 </form>
