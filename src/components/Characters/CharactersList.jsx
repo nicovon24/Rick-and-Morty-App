@@ -9,6 +9,7 @@ import { faTriangleExclamation} from '@fortawesome/free-solid-svg-icons'
 import {NormalCharactersList, CreatedCharactersList} from "././Characters/Lists.jsx"
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchPage, getInitialChars } from '../../redux/actions.js';
+import Navbar from '../Navbar/Navbar.jsx';
 
 export default function CharactersList() {
    // let {character, characters, setCharacters} = useContext(DataContext)
@@ -37,30 +38,33 @@ export default function CharactersList() {
    let {matched_characters, searchInput} = useSelector(state=>state)
 
    return(
-      <div className={styles.characters_container}>
-         <p className={styles.subtitle}>{isActiveShowAll ? "Characters" : "Created Characters"}</p>
-         <div className={styles.characters_subcontainer}>
+      <>
+         <Navbar/>
+         <div className={styles.characters_container}>
+            <p className={styles.subtitle}>{isActiveShowAll ? "Characters" : "Created Characters"}</p>
+            <div className={styles.characters_subcontainer}>
 
-            {/* search and filter values */}
-            <div className={styles.search_mobile}><SearchCharacter/></div> {/* we show this in mobile, it is at the beginning before the chars list */}
-            <div className={styles.characters_menu}>
-               <div className={styles.search_desktop}><SearchCharacter /></div> {/* we show this in desktop */}
-               <FormAddCharacter/>
-               <AddButtons onShowCreatedChars={()=>setIsActiveShowAll(prev=>!prev)} isActiveShowAll={isActiveShowAll}/>
-            </div>
-
-            {/* characters list */}
-            {matched_characters.length>0 ?
-               <div className={styles.characters_grid}>
-                  {isActiveShowAll ? <NormalCharactersList/> : <CreatedCharactersList/>}
+               {/* search and filter values */}
+               <div className={styles.search_mobile}><SearchCharacter/></div> {/* we show this in mobile, it is at the beginning before the chars list */}
+               <div className={styles.characters_menu}>
+                  <div className={styles.search_desktop}><SearchCharacter /></div> {/* we show this in desktop */}
+                  <FormAddCharacter/>
+                  <AddButtons onShowCreatedChars={()=>setIsActiveShowAll(prev=>!prev)} isActiveShowAll={isActiveShowAll}/>
                </div>
 
-               : <h2 className={styles.none_characters}><FontAwesomeIcon icon={faTriangleExclamation}/>There is no characters that matched the condition</h2>
-            }
+               {/* characters list */}
+               {matched_characters.length>0 ?
+                  <div className={styles.characters_grid}>
+                     {isActiveShowAll ? <NormalCharactersList/> : <CreatedCharactersList/>}
+                  </div>
+
+                  : <h2 className={styles.none_characters}><FontAwesomeIcon icon={faTriangleExclamation}/>There is no characters that matched the condition</h2>
+               }
+               
+            </div>
             
+            {!searchInput && <Page/>}
          </div>
-         
-         {!searchInput && <Page/>}
-      </div>
+      </>
    );
 }

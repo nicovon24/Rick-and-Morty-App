@@ -1,8 +1,15 @@
 import { useState } from "react"
 import styles from "./Forms.module.css"
 
+let arrImg     = [
+    ['Bojack', 'https://i1.sndcdn.com/artworks-000677277973-s3s4ew-t500x500.jpg'],
+    ['Homero', 'https://i.pinimg.com/564x/6d/fa/bd/6dfabdd00e70fddc4cb6ab65fa338a27.jpg'], 
+    ['Ron Weasley', 'https://i.pinimg.com/564x/c9/08/58/c908586ce9e195a0f9ea43bb98e7efa5.jpg'],
+    ['Jimenez', 'https://cdns-images.dzcdn.net/images/artist/c7ee19e5a26ed4c381f1ddf2f34c03da/500x500.jpg']
+]
+
 export default function FormAddCharacter(){
-    let [inputs, setInputs] = useState({name: "", status: "", species: "", origin: "", gender: "", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfz4px_B-4Z1E6i6kRH2pSgSfCzlk_0if0gw&usqp=CAU"}) //img inicial
+    let [inputs, setInputs] = useState({name: "", status: "", species: "", origin: "", gender: "", image: ""}) //img inicial
 
     //arrays to define the select options
     let arrSpecies = ['Human', 'Alien', 'Humanoid', 'Animal', 'Robot', 'Disease', 'Mythological Creature', 'Poopybutthole', 'unknown', 'Cronenberg'].sort((a,b)=>a.localeCompare(b))
@@ -23,7 +30,9 @@ export default function FormAddCharacter(){
             if(createdChars.length>0) id = createdChars[createdChars.length-1].id+1
             let newItems = [...createdChars, {...inputs, id: id}]
             localStorage.setItem('createdCharacters', JSON.stringify(newItems))
-            setInputs({name: "", id: "", status: "", species: "", origin: "", gender: "", image: ""})
+            setInputs(
+                {name: "", id: "", status: "", species: "", origin: "", gender: "", image: ""
+            })
         }
     }
 
@@ -33,7 +42,6 @@ export default function FormAddCharacter(){
             [e.target.name]: e.target.value
         })
     }
-
     
     return(
         <form className={styles.character_form} onSubmit={handleSubmit} name="add_form">
@@ -65,10 +73,11 @@ export default function FormAddCharacter(){
                 {arrGender.map((el,index)=><option value={el.toLowerCase()} key={index}>{el}</option>)}
             </select>
 
-            <label className={styles.add_property}>Image url:</label> 
-            <label htmlFor="image">
-                <input type="url" className="input_primary" name="image" id="image" onChange={handleChangeInput} placeholder="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfz4px_B-4Z1E6i6kRH2pSgSfCzlk_0if0gw&usqp=CAU" value={inputs.image}/>
-            </label>
+            <label className={styles.add_property}>Image:</label> 
+            <select onChange={handleChangeInput} value={inputs.image} className={`input_primary ${!inputs.gender ? "input_invalid" : "input_valid"}`} name="image" id="">
+                <option value="">Select an option...</option>
+                {arrImg.map((el,index)=><option value={el[1]} key={index}>{el[0]}</option>)}
+            </select>
 
             {isFormFilled ? "" : <p className={styles.uncompleted_data}>Uncompleted data</p>}
 

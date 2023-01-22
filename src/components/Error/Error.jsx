@@ -1,4 +1,4 @@
-import Navbar from "../components/Navbar/Navbar"
+import Navbar from "../Navbar/Navbar"
 import styles from "./Error.module.css"
 
 export default function Error(){

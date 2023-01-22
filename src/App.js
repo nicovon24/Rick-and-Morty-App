@@ -1,12 +1,12 @@
 import './App.css'
-import Characters from './pages/Characters.jsx'
+import Characters from './components/Characters/CharactersList.jsx'
 import {Routes, Route} from "react-router-dom"
-import Home from './pages/Home.jsx'
-import Error from './pages/Error.jsx'
-import About from './components/About/About'
-import Login from './pages/Login'
+import Home from './components/Home/Intro.jsx'
+import Error from './components/Error/Error.jsx'
+import About from './components/About/About.jsx'
+import Login from './components/Login/Login.jsx'
 import CharacterDetails from './components/Characters/Characters/CharacterDetails.jsx'
-import Favorites from './components/Favorites/Favorites'
+import Favorites from './components/Favorites/Favorites.jsx'
 
 function App () {
   return (

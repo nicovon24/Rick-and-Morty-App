@@ -5,9 +5,7 @@ import { removeFavorite } from "../../redux/actions"
 
 export default function CharacterFavorites({character}){
     let dispatch = useDispatch()
-    const handleChangeFav = ()=>{
-        dispatch(removeFavorite(character.id))
-    }
+    const handleChangeFav = ()=> dispatch(removeFavorite(character.id))
     
     return(
         <div className={styles.character_item}>

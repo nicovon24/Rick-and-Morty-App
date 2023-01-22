@@ -42,11 +42,6 @@ export default function Character({character, areCreatedOnes, onRemoveChar}) {
       }
    }
 
-   const handleRemoveChar = () => {
-      dispatch(deleteChar(character.id))
-      dispatch(removeFavorite(character.id))
-   }
-
    let {initialFavorites} = useSelector(state=>state)
 
    let some = initialFavorites.some(el=>el.id===character.id)
@@ -73,7 +68,7 @@ export default function Character({character, areCreatedOnes, onRemoveChar}) {
 
                   <div className={styles.delete_container} >
                      <img src={require("../../../assets/delete_blue.png")}  alt="delete btn"
-                     onClick={handleRemoveChar}/>
+                     onClick={()=>onRemoveChar(character.id)}/>
                   </div>
                </div>
                </div>

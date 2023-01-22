@@ -29,6 +29,7 @@
 
 .character_name{
     color: var(--font-orange);
+    text-transform: capitalize;
 }
 
 .character_item img{

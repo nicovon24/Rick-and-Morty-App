@@ -15,7 +15,6 @@ export default function Login(){
 
     let homeNavigate = useNavigate()
 
-    {/* hacer parte de errores */}
     const handleSubmitForm = e=>{
         e.preventDefault()
         if(!isAdmin){
@@ -46,33 +45,41 @@ export default function Login(){
 
     return(
         <div className={styles.login_container}>
-            <h1 className={styles.h1}>USER LOGIN</h1>
-            <form className={styles.login_form} onSubmit={handleSubmitForm}>
-                <input className={`${styles.input} ${styles.input_name}`} placeholder="Username..."
-                onChange={e=>setName(e.target.value)}></input>
+            <div className={styles.login_subcontainer}>
+                <h1 className={styles.h1}>USER LOGIN</h1>
+                <form className={styles.login_form} onSubmit={handleSubmitForm}>
+                    <input className={`${styles.input} ${styles.input_name}`} placeholder="Username..."
+                    onChange={e=>setName(e.target.value)}></input>
 
-                <div className={styles.divPassword}>
-                    <input  className={`${styles.input_password}`} type={isHiddenActive ? "password" : "text"} placeholder="Password..."
-                    onChange={e=>setPassword(e.target.value)}></input>
-                    <button className={styles.btn_hide} type="button" onClick={()=>setIsHiddenActive(prev=>!prev)}>
-                        {<FontAwesomeIcon className={styles.hide_icon} icon={isHiddenActive ? faEye : faXmark}/>}
-                    </button>
+                    <div className={styles.divPassword}>
+                        <input  className={`${styles.input_password}`} type={isHiddenActive ? "password" : "text"} placeholder="Password..."
+                        onChange={e=>setPassword(e.target.value)}></input>
+                        <button className={styles.btn_hide} type="button" onClick={()=>setIsHiddenActive(prev=>!prev)}>
+                            {<FontAwesomeIcon className={styles.hide_icon} icon={isHiddenActive ? faEye : faXmark}/>}
+                        </button>
+                    </div>
+
+                    <div className={styles.checkbox_container}>
+                        <input type="checkbox" name="cb_admin" htmlFor="cb_admin" id="cb_admin" value={isAdmin} onChange={()=>setIsAdmin(prev=>!prev)} />
+                        <label name="cb_admin" htmlFor="cb_admin">Login as admin (do not need login data)</label>
+                    </div>
+
+                    {isIncorrectData ? <p className={styles.incorrect_data}>Incorrect data, try again</p> : ""}
+
+                    <button className={`${styles.login}`} type="submit"><label>Login</label></button>
+
+                    <hr />
+
+                    <div className={styles.sign_in_container}>
+                        <NavLink className={styles.sign_in}>Sign in</NavLink>
+                    </div>
+
+                </form>
+
+                <div className={styles.final_message}>
+                    <h2>Want to try it?</h2>
+                    <p>Probe with nicovon2000 and Liverpool123</p>
                 </div>
-
-                <div className={styles.checkbox_container}>
-                    <input type="checkbox" name="cb_admin" htmlFor="cb_admin" id="cb_admin" value={isAdmin} onChange={()=>setIsAdmin(prev=>!prev)} />
-                    <label name="cb_admin" htmlFor="cb_admin">Login as admin (do not need login data)</label>
-                </div>
-
-                {isIncorrectData ? <p className={styles.incorrect_data}>Incorrect data, try again</p> : ""}
-
-                <button className={`${styles.btn_submit}`} type="submit"><label>Login</label></button>
-                
-            </form>
-
-            <div className={styles.final_message}>
-                <h2>Want to try it?</h2>
-                <p>Probe with nicovon2000 and Liverpool123</p>
             </div>
         </div>
     )
