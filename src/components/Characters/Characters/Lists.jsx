@@ -1,11 +1,10 @@
-import Character from './Character.jsx';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTriangleExclamation} from '@fortawesome/free-solid-svg-icons'
+import { useState, useEffect } from 'react';
 import styles from "./Characters.module.css"
-import { useState } from 'react';
-import { useEffect } from 'react';
+import Character from './Character.jsx';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteChar } from '../../../redux/actions.js';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTriangleExclamation} from '@fortawesome/free-solid-svg-icons'
 
 export function NormalCharactersList(){
 

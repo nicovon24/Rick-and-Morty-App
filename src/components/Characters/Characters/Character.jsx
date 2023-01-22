@@ -1,11 +1,8 @@
-import { useEffect, useState, useContext } from "react";
-// import {useDispatch, useSelector} from "react-redux"
-// import {addFav, removeFav} from "../../../redux/actions.js"
-// import {DataContext} from "../../../context"
+import { useEffect, useState  } from "react";
 import styles from "./Characters.module.css"
 import {Link} from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux";
-import { addFavorite, removeFavorite } from "../../../redux/actions";
+import { addFavorite, removeFavorite, deleteChar } from "../../../redux/actions";
 
 export default function Character({character, areCreatedOnes, onRemoveChar}) {
    let [firstEpisodeName, setFirstEpisodeName] = useState("") 
@@ -34,7 +31,7 @@ export default function Character({character, areCreatedOnes, onRemoveChar}) {
       }
    }, [character])
 
-   const handleChangeFav = ()=> {
+   const handleChangeFav = () => {
       if(isFavorite){
          setIsFavorite(false)
          dispatch(removeFavorite(character.id))
@@ -43,6 +40,11 @@ export default function Character({character, areCreatedOnes, onRemoveChar}) {
          setIsFavorite(true)
          dispatch(addFavorite(character))
       }
+   }
+
+   const handleRemoveChar = () => {
+      dispatch(deleteChar(character.id))
+      dispatch(removeFavorite(character.id))
    }
 
    let {initialFavorites} = useSelector(state=>state)
@@ -71,12 +73,12 @@ export default function Character({character, areCreatedOnes, onRemoveChar}) {
 
                   <div className={styles.delete_container} >
                      <img src={require("../../../assets/delete_blue.png")}  alt="delete btn"
-                     onClick={()=>onRemoveChar(character.id)}/>
+                     onClick={handleRemoveChar}/>
                   </div>
                </div>
                </div>
             }
-            <Link to={`/characters/${character.id}`}><img src={character?.image} alt="character img"/></Link>
+            <Link to={`/characters/${character.id}`} className={styles.character_link_details}><img src={character?.image} alt="character img"/></Link>
          </div>
          
          <div className={styles.character_info}>
@@ -97,7 +99,7 @@ export default function Character({character, areCreatedOnes, onRemoveChar}) {
                   <p>{firstEpisodeName}</p>
                </div>
                <div className="character-num_episodes">
-                  <p  className={styles.character_subtitle}>Number of episodes:</p>
+                  <p className={styles.character_subtitle}>Number of episodes:</p>
                   <p>{character?.episode.length}</p>
                </div>
             </>

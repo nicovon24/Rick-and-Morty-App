@@ -3,7 +3,7 @@ import {
     ADD_PAGE_CHAR, DECREASE_PAGE_CHAR, MOVE_PAGE_CHAR, FETCH_PAGE,
     ADD_FAVORITE, REMOVE_FAVORITE, FILTER_FAVORITE_GENDER, FILTER_FAVORITE_ASCENDANT, FILTER_FAVORITE_DESCENDANT, RESTART_MATCHED_FAV
 }
-from "./actions.js"
+from "./action-types.js"
 
 const initialState = {
     matched_characters: [],

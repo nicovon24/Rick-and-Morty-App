@@ -20,7 +20,7 @@
 
 /*** characters created ***/
 .character_item_created{
-    max-height: 400px;
+    max-height: 550px;
 }
 
 .character_item_created .character_info{
@@ -63,6 +63,11 @@
 .character_subtitle{
     padding: 8px 0px;
     color: rgb(175, 168, 168);
+}
+
+.character_link_details{
+    text-decoration: none;
+    color: white;
 }
 
 .alive  {background-color: green;}

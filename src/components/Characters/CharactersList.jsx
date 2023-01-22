@@ -36,8 +36,6 @@ export default function CharactersList() {
    
    let {matched_characters, searchInput} = useSelector(state=>state)
 
-
-
    return(
       <div className={styles.characters_container}>
          <p className={styles.subtitle}>{isActiveShowAll ? "Characters" : "Created Characters"}</p>
