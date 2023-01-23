@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom"
 import styles from "./Login.module.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEye, faXmark } from '@fortawesome/free-solid-svg-icons'
-import {users_data} from "../../data/users_data.js"
+import { users_data } from "../../data/users_data.js"
 import { NavLink } from "react-router-dom"
 
 export default function Login(){
@@ -43,18 +43,16 @@ export default function Login(){
         }
     }
 
-    const redirectToSignIn = useNavigate("/sign_in")
-
     return(
         <div className={styles.login_container}>
             <div className={styles.subcontainer}>
                 <h1 className={styles.h1}>USER LOGIN</h1>
                 <form className={styles.form} onSubmit={handleSubmitForm}>
-                    <input className={`${styles.input} ${styles.input_name}`} placeholder="Username..."
+                    <input className={`${styles.input} ${styles.input_name}`} placeholder="Username..." 
                     onChange={e=>setName(e.target.value)}></input>
 
                     <div className={styles.divPassword}>
-                        <input  className={`${styles.input_password}`} type={isHiddenActive ? "password" : "text"} placeholder="Password..."
+                        <input  className={`${styles.input_password}`} type={isHiddenActive ? "password" : "text"} placeholder="Password..." autoComplete="password"
                         onChange={e=>setPassword(e.target.value)}></input>
                         <button className={styles.btn_hide} type="button" onClick={()=>setIsHiddenActive(prev=>!prev)}>
                             {<FontAwesomeIcon className={styles.hide_icon} icon={isHiddenActive ? faEye : faXmark}/>}
@@ -72,9 +70,9 @@ export default function Login(){
 
                     <hr />
 
-                    <div className={styles.sign_in_container}>
-                        <NavLink to="/sign_in"
-                        className={styles.sign_in}>Sign in</NavLink>
+                    <div className={styles.sign_up_container}>
+                        <NavLink to="/sign_up"
+                        className={styles.sign_up}>Sign up</NavLink>
                     </div>
 
                 </form>
