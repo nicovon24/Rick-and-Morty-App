@@ -1,5 +1,6 @@
 import { useState } from "react"
 import styles from "./Forms.module.css"
+import { Axios } from "../../../config"
 
 let arrImg     = [
     ['Bojack', 'https://i1.sndcdn.com/artworks-000677277973-s3s4ew-t500x500.jpg'],
@@ -7,6 +8,22 @@ let arrImg     = [
     ['Ron Weasley', 'https://i.pinimg.com/564x/c9/08/58/c908586ce9e195a0f9ea43bb98e7efa5.jpg'],
     ['Jimenez', 'https://cdns-images.dzcdn.net/images/artist/c7ee19e5a26ed4c381f1ddf2f34c03da/500x500.jpg']
 ]
+
+const postDataApi = async(inputs)=>{
+    Axios.post("http://localhost:/5000/api/created_char", inputs, {
+        headers: {
+            "Content-Type": "multipart/form-data"
+        }
+    })
+    .then((res) => {
+        console.log(res);
+    })
+    .catch((err) => {
+        console.log(err);
+    });
+}
+
+let API_URL_CREATED_CHAR = `http://localhost:5000/api/created_char/` //API_URL_CREATED_CHAR
 
 export default function FormAddCharacter(){
     let [inputs, setInputs] = useState({name: "", status: "", species: "", origin: "", gender: "", image: ""}) //img inicial
@@ -22,17 +39,19 @@ export default function FormAddCharacter(){
     //function to submit
     const handleSubmit = e=>{
         e.preventDefault()
-        let id = 10000
+        let id = 1003
         
         //local storage only supports strings, use JSON.stringify and JSON.parse
         if(isFormFilled){
             let createdChars = JSON.parse(localStorage.getItem('createdCharacters'))
             if(createdChars.length>0) id = createdChars[createdChars.length-1].id+1
-            let newItems = [...createdChars, {...inputs, id: id}]
+            let newItems = [...createdChars, {...inputs, id: id, url: API_URL_CREATED_CHAR + "?id=" + id}]
+            //**** API_URL para BD ****/
             localStorage.setItem('createdCharacters', JSON.stringify(newItems))
             setInputs(
                 {name: "", id: "", status: "", species: "", origin: "", gender: "", image: ""
             })
+            postDataApi(inputs)
         }
     }
 
@@ -44,7 +63,8 @@ export default function FormAddCharacter(){
     }
     
     return(
-        <form className={styles.character_form} onSubmit={handleSubmit} name="add_form">
+        <form className={styles.character_form} onSubmit={handleSubmit} name="add_form" 
+        method="POST" action="add">
             <p className={styles.character_filterTitle}>Add a character</p>
             <label className={styles.add_property} htmlFor="name">Name:</label>
             <input className={`input_primary ${!inputs.name ? "input_invalid" : "input_valid"}`} value={inputs.name} htmlFor="name" name="name" onChange={handleChangeInput} type="text" placeholder="Example: Rick..."></input>

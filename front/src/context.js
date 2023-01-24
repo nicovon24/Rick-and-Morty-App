@@ -1,6 +1,4 @@
-import React, { useContext, useEffect, useState} from 'react'
-import {useDispatch, useSelector} from "react-redux"
-import { getInitialChars } from './redux/actions'
+import React, { useContext, useState} from 'react'
 
 const DataContext = React.createContext() //creating a context
 

@@ -1,5 +1,5 @@
 import styles from "./Favorites.module.css"
-import Navbar from "../../components/Navbar/Navbar.jsx"
+import Navbar from "../Navbar/Navbar.jsx"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTriangleExclamation} from '@fortawesome/free-solid-svg-icons'
 import CharacterFavorites from "./CharacterFavorites"

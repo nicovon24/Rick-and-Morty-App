@@ -7,7 +7,7 @@ import {
 
 export const getInitialChars = ()=>{
     return async function(dispatch){
-        let response = await axios.get(`https://rickandmortyapi.com/api/character`)
+        let response = await axios.get(`http://localhost:3001/api/rickandmorty/detail`)
         return dispatch({
                 type: GET_INITIAL_CHARS,
                 payload: response.data.results
@@ -18,7 +18,8 @@ export const getInitialChars = ()=>{
 
 export const getCharDetails = (id)=>{
     return async function(dispatch){
-        let response = await axios.get(`https://rickandmortyapi.com/api/character/${id}`)
+        let response = await axios.get(`http://localhost:3001/api/rickandmorty/detail/${id}`)
+        console.log(response.data)
         return dispatch({
                 type: GET_CHAR_DETAILS,
                 payload: response.data
@@ -36,7 +37,7 @@ export const deleteChar = (id)=>{
 
 export const searchChar = (input)=>{
     return async function(dispatch){
-        let response = await axios.get(`https://rickandmortyapi.com/api/character/?name=${input}`)
+        let response = await axios.get(`http://localhost:3001/api/rickandmorty/detail/?name=${input}`)
         return dispatch({
             type: SEARCH_CHAR,
             payload: response.data.results
@@ -53,7 +54,7 @@ export const saveSearchInput = (input)=>{
 
 export const fetchPage = (page)=>{
     return async function(dispatch){
-        let response = await axios.get(`https://rickandmortyapi.com/api/character?page=${page}`)
+        let response = await axios.get(`http://localhost:3001/api/rickandmorty/detail/?page=${page}`)
         return dispatch({
                 type: FETCH_PAGE,
                 payload: response.data.results

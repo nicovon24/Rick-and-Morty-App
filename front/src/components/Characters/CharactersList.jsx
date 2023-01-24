@@ -6,7 +6,7 @@ import Page from "./Page_number/Page_number.jsx";
 import styles from "./Characters.module.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTriangleExclamation} from '@fortawesome/free-solid-svg-icons'
-import {NormalCharactersList, CreatedCharactersList} from "././Characters/Lists.jsx"
+import {NormalCharactersList, CreatedCharactersList} from "./Characters/Lists.jsx"
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchPage, getInitialChars } from '../../redux/actions.js';
 import Navbar from '../Navbar/Navbar.jsx';
