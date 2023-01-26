@@ -2,7 +2,7 @@ import axios from "axios"
 import {   
     GET_INITIAL_CHARS, GET_CHAR_DETAILS,  DELETE_CHAR, SEARCH_CHAR, SAVE_SEARCH_INPUT,
     ADD_PAGE_CHAR, DECREASE_PAGE_CHAR, MOVE_PAGE_CHAR, FETCH_PAGE,
-    ADD_FAVORITE, REMOVE_FAVORITE, FILTER_FAVORITE_GENDER, FILTER_FAVORITE_ASCENDANT, FILTER_FAVORITE_DESCENDANT, RESTART_MATCHED_FAV
+    ADD_FAVORITE, REMOVE_FAVORITE, FILTER_FAVORITE_GENDER, FILTER_FAVORITE_ASCENDANT, FILTER_FAVORITE_DESCENDANT, RESTART_MATCHED_FAV, CHANGE_PROFILE, POST_DATA
 } from "./action-types.js"
 
 export const getInitialChars = ()=>{
@@ -19,7 +19,6 @@ export const getInitialChars = ()=>{
 export const getCharDetails = (id)=>{
     return async function(dispatch){
         let response = await axios.get(`http://localhost:3001/api/rickandmorty/detail/${id}`)
-        console.log(response.data)
         return dispatch({
                 type: GET_CHAR_DETAILS,
                 payload: response.data
@@ -112,4 +111,30 @@ export const restartMatchedFav = ()=>{ //for filters
     return {
         type: RESTART_MATCHED_FAV
     }
+}
+
+export const changeProfile = (data)=>{
+    return{
+        type: CHANGE_PROFILE,
+        payload: data
+    }
+}
+
+export let postData = (data)=>{
+    return async function(dispatch){
+        fetch("http://localhost:3001/api/created_char", {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: { 'Content-Type': 'application/json' }
+        })
+        .then(res => res.json())
+        .then(json => {
+            console.log(json)
+            dispatch({
+                type: POST_DATA,
+                payload: json
+            })
+        });
+    }
+    
 }

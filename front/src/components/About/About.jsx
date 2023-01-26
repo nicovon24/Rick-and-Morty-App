@@ -1,4 +1,3 @@
-import Navbar from "../Navbar/Navbar.jsx"
 import styles from "./About.module.css"
 import { useNavigate } from "react-router-dom"
 
@@ -6,7 +5,6 @@ export default function About(){
     let homeNavigate = useNavigate()
     return(
         <>
-            <Navbar/>
             <div className={styles.aboutContainer}>
                 <div className={styles.about}>
                     <img src={require("../../assets/about.png")} alt="img about"/>

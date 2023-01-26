@@ -1,10 +1,11 @@
-import { useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { useState, useEffect } from "react"
+import { NavLink, useNavigate } from "react-router-dom"
+import {useDispatch} from "react-redux"
+import {changeProfile} from "../../redux/actions.js"
 import styles from "./Login.module.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEye, faXmark } from '@fortawesome/free-solid-svg-icons'
 import { users_data } from "../../data/users_data.js"
-import { NavLink } from "react-router-dom"
 
 export default function Login(){
     let [name, setName] = useState("")
@@ -15,6 +16,8 @@ export default function Login(){
 
     let homeNavigate = useNavigate()
 
+    let dispatch = useDispatch()
+
     const handleSubmitForm = e=>{
         e.preventDefault()
         if(!isAdmin){
@@ -23,6 +26,7 @@ export default function Login(){
                 if(users[name].password===password){
                     setIsIncorrectData(false)
                     homeNavigate("/home")
+                    dispatch(changeProfile({name, password}))
                 }
                 else{
                     setIsIncorrectData(true)
@@ -40,6 +44,7 @@ export default function Login(){
         }
         else{
             homeNavigate("/home")
+            dispatch(changeProfile({name: "admin", password: "123456"}))
         }
     }
 

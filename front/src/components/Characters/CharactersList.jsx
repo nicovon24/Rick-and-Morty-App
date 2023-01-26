@@ -9,12 +9,17 @@ import { faTriangleExclamation} from '@fortawesome/free-solid-svg-icons'
 import {NormalCharactersList, CreatedCharactersList} from "./Characters/Lists.jsx"
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchPage, getInitialChars } from '../../redux/actions.js';
-import Navbar from '../Navbar/Navbar.jsx';
+import Loader from '../Loader/Loader.jsx';
 
 export default function CharactersList() {
    // let {character, characters, setCharacters} = useContext(DataContext)
    let [isActiveShowAll, setIsActiveShowAll] = useState(true)
-
+   let [isLoading, setIsLoading] = useState(true)
+   useEffect(()=>{
+      setTimeout(()=>{
+         setIsLoading(false)
+      }, [2000])
+   }, [])
    
    //*todo dispatch
    let dispatch = useDispatch()
@@ -39,32 +44,33 @@ export default function CharactersList() {
 
    return(
       <>
-         <Navbar/>
+         {isLoading ? <Loader/>
+         : 
          <div className={styles.characters_container}>
-            <p className={styles.subtitle}>{isActiveShowAll ? "Characters" : "Created Characters"}</p>
-            <div className={styles.characters_subcontainer}>
+         <p className={styles.subtitle}>{isActiveShowAll ? "Characters" : "Created Characters"}</p>
+         <div className={styles.characters_subcontainer}>
 
-               {/* search and filter values */}
-               <div className={styles.search_mobile}><SearchCharacter/></div> {/* we show this in mobile, it is at the beginning before the chars list */}
-               <div className={styles.characters_menu}>
-                  <div className={styles.search_desktop}><SearchCharacter /></div> {/* we show this in desktop */}
-                  <FormAddCharacter/>
-                  <AddButtons onShowCreatedChars={()=>setIsActiveShowAll(prev=>!prev)} isActiveShowAll={isActiveShowAll}/>
+            {/* search and filter values */}
+            <div className={styles.search_mobile}><SearchCharacter/></div> {/* we show this in mobile, it is at the beginning before the chars list */}
+            <div className={styles.characters_menu}>
+               <div className={styles.search_desktop}><SearchCharacter /></div> {/* we show this in desktop */}
+               <FormAddCharacter/>
+               <AddButtons onShowCreatedChars={()=>setIsActiveShowAll(prev=>!prev)} isActiveShowAll={isActiveShowAll}/>
+            </div>
+
+            {/* characters list */}
+            {matched_characters.length>0 ?
+               <div className={styles.characters_grid}>
+                  {isActiveShowAll ? <NormalCharactersList/> : <CreatedCharactersList/>}
                </div>
 
-               {/* characters list */}
-               {matched_characters.length>0 ?
-                  <div className={styles.characters_grid}>
-                     {isActiveShowAll ? <NormalCharactersList/> : <CreatedCharactersList/>}
-                  </div>
-
-                  : <h2 className={styles.none_characters}><FontAwesomeIcon icon={faTriangleExclamation}/>There is no characters that matched the condition</h2>
-               }
-               
-            </div>
+               : <h2 className={styles.none_characters}><FontAwesomeIcon icon={faTriangleExclamation}/>There is no characters that matched the condition</h2>
+            }
             
-            {!searchInput && <Page/>}
          </div>
+         
+         {!searchInput && <Page/>}
+      </div>}
       </>
    );
 }

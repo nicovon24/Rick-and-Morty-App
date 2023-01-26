@@ -114,7 +114,7 @@ export default function SignUp(){
                     ? "" 
                     : <p className={styles2.uncompleted_data}>Uncompleted data</p>}
                     
-                    <button className={`${styles.login}`} type="submit"><label>Sign in</label></button>
+                    <button className={`${styles.login}`} type="submit"><label>Sign up</label></button>
 
                 </form>
 

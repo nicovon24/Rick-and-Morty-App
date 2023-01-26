@@ -1,6 +1,7 @@
 import { useState } from "react"
+import { useDispatch } from "react-redux"
+import { createChar, postData } from "../../../redux/actions"
 import styles from "./Forms.module.css"
-import { Axios } from "../../../config"
 
 let arrImg     = [
     ['Bojack', 'https://i1.sndcdn.com/artworks-000677277973-s3s4ew-t500x500.jpg'],
@@ -9,24 +10,10 @@ let arrImg     = [
     ['Jimenez', 'https://cdns-images.dzcdn.net/images/artist/c7ee19e5a26ed4c381f1ddf2f34c03da/500x500.jpg']
 ]
 
-const postDataApi = async(inputs)=>{
-    Axios.post("http://localhost:/5000/api/created_char", inputs, {
-        headers: {
-            "Content-Type": "multipart/form-data"
-        }
-    })
-    .then((res) => {
-        console.log(res);
-    })
-    .catch((err) => {
-        console.log(err);
-    });
-}
-
 let API_URL_CREATED_CHAR = `http://localhost:5000/api/created_char/` //API_URL_CREATED_CHAR
 
 export default function FormAddCharacter(){
-    let [inputs, setInputs] = useState({name: "", status: "", species: "", origin: "", gender: "", image: ""}) //img inicial
+    let [inputs, setInputs] = useState({id: 1002, name: "", status: "", species: "", origin: "", gender: "", image: ""}) //img inicial
 
     //arrays to define the select options
     let arrSpecies = ['Human', 'Alien', 'Humanoid', 'Animal', 'Robot', 'Disease', 'Mythological Creature', 'Poopybutthole', 'unknown', 'Cronenberg'].sort((a,b)=>a.localeCompare(b))
@@ -36,22 +23,28 @@ export default function FormAddCharacter(){
 
     let isFormFilled = inputs.name!=="" && inputs.status!=="" && inputs.species!=="" && inputs.origin!=="" && inputs.gender!=="" && inputs.image!=="" //true or false
 
+    let dispatch = useDispatch()
+
     //function to submit
     const handleSubmit = e=>{
         e.preventDefault()
-        let id = 1003
-        
+        let id = 1002
         //local storage only supports strings, use JSON.stringify and JSON.parse
         if(isFormFilled){
             let createdChars = JSON.parse(localStorage.getItem('createdCharacters'))
-            if(createdChars.length>0) id = createdChars[createdChars.length-1].id+1
+            if(createdChars.length>0) {
+                id = createdChars[createdChars.length-1].id+1
+                if(!id) id=1002
+            }
             let newItems = [...createdChars, {...inputs, id: id, url: API_URL_CREATED_CHAR + "?id=" + id}]
-            //**** API_URL para BD ****/
+            
             localStorage.setItem('createdCharacters', JSON.stringify(newItems))
+
+            dispatch(postData(inputs))
+
             setInputs(
                 {name: "", id: "", status: "", species: "", origin: "", gender: "", image: ""
             })
-            postDataApi(inputs)
         }
     }
 

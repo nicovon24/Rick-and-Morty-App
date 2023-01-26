@@ -1,9 +1,11 @@
 import styles from "./Intro.module.css"
 import {NavLink} from "react-router-dom"
+import { useSelector } from "react-redux"
 
 //**** ANIMACION ROTACION PORTALES *****/
 
 export default function Intro(){
+   let profile= useSelector(state=>state.profile)
    return(
     <div>
         <div className={styles.intro}>

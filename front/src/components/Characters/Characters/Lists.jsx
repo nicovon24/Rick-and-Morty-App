@@ -16,11 +16,13 @@ export function NormalCharactersList(){
         dispatch(removeFavorite(id))
      }
 
+    let map = matched_characters.map((person, index)=><Character character={person} 
+    onRemoveChar={()=>handleRemoveChar(person.id)} 
+    key={index}/>)
+
     return(
         <>
-            {matched_characters.map((person, index)=><Character character={person} 
-            onRemoveChar={()=>handleRemoveChar(person.id)} 
-            key={index}/>)}
+            {map}
         </>
     )
 }
@@ -43,12 +45,15 @@ export function CreatedCharactersList(){
         dispatch(removeFavorite(id))
     }
 
+    let map = createdCharacters.map((person, index)=><Character character={person}  
+    onRemoveChar={()=>handleRemoveChar(person.id)} 
+    key={index} areCreatedOnes={true}/>)
+
     return(
         <>
-            { createdCharacters.length>0 ? createdCharacters.map((person, index)=><Character character={person}  
-            onRemoveChar={()=>handleRemoveChar(person.id)} 
-            key={index} areCreatedOnes={true}/>)
-            : <h2 className={styles.none_characters}><FontAwesomeIcon icon={faTriangleExclamation}/>There is no characters created</h2>}
+            {createdCharacters.length>0 ? map
+              : <h2 className={styles.none_characters}><FontAwesomeIcon icon={faTriangleExclamation}/>There is no characters created</h2>
+            }
         </>
     )
 }

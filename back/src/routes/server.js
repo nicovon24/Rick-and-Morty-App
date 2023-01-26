@@ -1,10 +1,12 @@
 const express = require("express")
 const server = express()
 const cors = require('cors');
-let {created_data} = require("../utils/created_data.js")
-let {getCharById} = require("../controllers/getCharById.js")
-let {getAllChar} = require("../controllers/getAllChar.js")
-const { getSearch } = require("../controllers/getSearch.js")
+const {created_data} = require("../utils/created_data.js")
+const {getCharById} = require("../controllers/getCharById.js")
+const {getAllChar} = require("../controllers/getAllChar.js")
+const {getSearch} = require("../controllers/getSearch.js")
+const {postCreatedChar} = require("../controllers/postCreatedChar.js");
+let bodyParser = require("body-parser");
 
 let PORT = 3001
 let main_url = `http://localhost:${PORT}/api` 
@@ -20,22 +22,8 @@ server.get("/api", (req, res)=>{
 })
 
 server.use(cors());
-
-server.get("/api/created_char", (req,res)=>{ 
-    let {id} = req.query
-    if(!id) res.status(200).send(created_data)
-    else{ 
-        let data = Object.entries(created_data.results).filter(el=>el[1].id===Number(id))
-        if(data.length>0) {
-            data = {[data[0][0]]: data[0][1]} //***haciendo que quede de vuelta como obj
-            let person = {counter: created_data.counter, results: data}
-            res.status(201).json(person)
-        } else{
-            res.status(401).send("<h3>Character not found</h3>")
-        }
-        
-    }
-})
+server.use(bodyParser.urlencoded({ extended: true, limit: "300mb" }));
+server.use(bodyParser.json({ limit: "300mb" }));
 
 server.get("/api/rickandmorty/detail", (req,res)=>{ 
     let {page, name} = req.query
@@ -50,6 +38,27 @@ server.get("/api/rickandmorty/detail/:id", (req,res)=>{
     let id = arrURL[arrURL.length-1]
     getCharById(res, id)
 })
+
+server.get("/api/created_char", (req,res)=>{ 
+    let {id} = req.query
+    console.log(req.body)
+    if(!id) res.status(200).send(created_data)
+    else{ 
+        let data = Object.entries(created_data.results).filter(el=>el[1].id===Number(id))
+        if(data.length>0) {
+            data = {[data[0][0]]: data[0][1]} //***haciendo que quede de vuelta como obj
+            let person = {counter: created_data.counter, results: data}
+            res.status(201).json(person)
+        } else{
+            res.status(401).send("<h3>Character not found</h3>")
+        }
+        
+    }
+})
+
+server.post('/api/created_char',(req, res) => {
+    postCreatedChar(res, req.body)
+});
 
 
 server.all('*', (req, res) => {

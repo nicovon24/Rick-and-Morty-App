@@ -23,8 +23,12 @@
     color: white;
 } 
 
+.logo{
+    width: 70px;
+}
+
 .nav_links:hover{
-    color: var(--font-orange);
+    color: var(--light-blue);
     cursor: pointer;
 }
 
@@ -33,7 +37,7 @@
 }
 
 .profile_btn{
-    background-color: orange;
+    background-color: var(--light-blue);
     color: black;
     padding: 5px 10px;
     border-radius: 50px;
@@ -106,6 +110,39 @@
     width: 50px;
 }
 
+.profile_image{
+    width: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    padding-bottom: 8px;
+}
+
+.profile_image_div{
+    height: 70px;
+    position: absolute;
+    top: 80px;
+    display: none;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    padding-right: 75px;
+    padding-left: 5px;
+    background-color: white;
+    color: black;
+    height: 70px;
+}
+
+.profile_image:hover + .profile_image_div, .profile_image_div:hover{
+    display: block;
+}
+
+.nav_link_profile{
+    display: inline-block;
+    color: blue;
+    font-weight: 900;
+    width: 100%;
+    font-size: 1.1rem;
+}
+
 ul svg{ /* nav link icons */
     padding-right: 3px;
 }
@@ -120,9 +157,22 @@ ul svg{ /* nav link icons */
     font-size: 1.2rem;
 }
 
-
 .nav_title_desktop{
     display: none;
+}
+
+.nav_phone .profile_btn{
+    background-color: var(--font-orange);
+}
+
+.nav_phone .nav_links:hover, .nav_phone .nav_logo{
+    color: var(--font-orange);
+}
+
+.nav .profile_btn:hover{
+    color: black;
+    background-color: white;
+    transition: 1s;
 }
 
 
