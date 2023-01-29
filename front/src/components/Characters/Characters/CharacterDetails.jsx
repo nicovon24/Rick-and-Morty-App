@@ -6,7 +6,6 @@ import Navbar from "../../Navbar/Navbar.jsx"
 import { getCharDetails } from "../../../redux/actions"
 
 export default function CharacterDetails(){
-    // let [character, setCharacter] = useState({})
     let {id} = useParams()
     let navigateToHome = useNavigate()
     let dispatch = useDispatch()

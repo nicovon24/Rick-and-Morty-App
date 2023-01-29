@@ -1,7 +1,7 @@
 import {   
-    GET_INITIAL_CHARS, GET_CHAR_DETAILS,  DELETE_CHAR, SEARCH_CHAR, SAVE_SEARCH_INPUT,CREATE_CHAR,
+    GET_INITIAL_CHARS, GET_CHAR_DETAILS,  DELETE_CHAR, SEARCH_CHAR, SAVE_SEARCH_INPUT, ADD_CREATED_CHAR, REMOVE_CREATED_CHAR, FETCH_CREATED_CHAR, 
     ADD_PAGE_CHAR, DECREASE_PAGE_CHAR, MOVE_PAGE_CHAR, FETCH_PAGE,
-    ADD_FAVORITE, REMOVE_FAVORITE, FILTER_FAVORITE_GENDER, FILTER_FAVORITE_ASCENDANT, FILTER_FAVORITE_DESCENDANT, RESTART_MATCHED_FAV, CHANGE_PROFILE, POST_DATA,
+    ADD_FAVORITE, REMOVE_FAVORITE, FILTER_FAVORITE_GENDER, FILTER_FAVORITE_ASCENDANT, FILTER_FAVORITE_DESCENDANT, RESTART_MATCHED_FAV, CHANGE_PROFILE,  
 }
 from "./action-types.js"
 
@@ -14,6 +14,7 @@ const initialState = {
     page: 1,
     matchedFavorites: [],
     initialFavorites: [],
+    createdChar: [],
     profile: {age: 22, country: "Argentina", image: "https://wallpapers.com/images/featured/4co57dtwk64fb7lv.jpg"}
 }
 
@@ -105,8 +106,19 @@ const rootReducer = (state = initialState, {type, payload})=>{
             profile: {...state.profile, ...payload}
         }
 
-        case POST_DATA: return{
-            ...state
+        case FETCH_CREATED_CHAR: return {
+            ...state, 
+            createdChar: payload
+        }
+
+        case ADD_CREATED_CHAR: return {
+            ...state,
+            createdChar: [...state.createdChar, payload]
+        }
+
+        case REMOVE_CREATED_CHAR: return {
+            ...state,
+            createdChar: state.createdChar.filter(el=>el.id!==payload)
         }
 
         default: return {

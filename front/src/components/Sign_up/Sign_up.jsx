@@ -1,24 +1,27 @@
 import { useState } from "react"
+import {useDispatch} from "react-redux"
 import styles from "../Login/Login.module.css"
 import styles2 from "./Sign_up.module.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEye, faXmark } from '@fortawesome/free-solid-svg-icons'
+import { faEye,  faXmark } from '@fortawesome/free-solid-svg-icons'
 import {NavLink, useNavigate} from "react-router-dom"
+import { postUser } from "../../redux/actions"
 
 export default function SignUp(){
     let [isHiddenActive, setIsHiddenActive] = useState(true)
     let [inputs, setInputs] = useState({
+        username: "",
+        password: "",
+        email: "",
         fname: "",
         lname: "",
-        username: "",
-        email: "",
-        gender: "",
-        password: ""
+        gender: ""
     })
     let [errors, setErrors] = useState({
         password: "",
         email: ""
     })
+    let dispatch = useDispatch()
 
     let isFormFilled = inputs.fname!=="" && inputs.lname!=="" && inputs.username!=="" && inputs.email!=="" && inputs.gender!=="" && inputs.password!==""
 
@@ -46,7 +49,7 @@ export default function SignUp(){
             }
             else {
                 setErrors({...errors, password: "", email: ""})
-                console.log("sending the form...")
+                dispatch(postUser(inputs))
                 setInputs({
                     fname: "", lname: "", username: "",
                     email: "", gender: "", password: ""
@@ -78,19 +81,19 @@ export default function SignUp(){
 
                     <div className={styles2.sign_in_gender}>
                         <div className={styles2.sign_in_gender_subcontainer}>
-                            <input type="radio" name="gender" value="male" id="" checked={inputs.gender==="male"}
+                            <input type="radio" name="gender" value="male" id="male" checked={inputs.gender==="male"}
                             onChange={handleChangeInput} />
                             <label className={styles.sign_in_gender_option}>Male</label>
                         </div>
 
                         <div className={styles2.sign_in_gender_subcontainer}>
-                            <input type="radio" name="gender" value="female" id="" checked={inputs.gender==="female"}
+                            <input type="radio" name="gender" value="female" id="female" checked={inputs.gender==="female"}
                             onChange={handleChangeInput} />
                             <label className={styles2.sign_in_gender_option}>Female</label>
                         </div>
 
                         <div className={styles2.sign_in_gender_subcontainer}>
-                            <input type="radio" name="gender" value="no binary" id="" checked={inputs.gender==="no binary"}
+                            <input type="radio" name="gender" value="no binary" id="no_binary" checked={inputs.gender==="no binary"}
                             onChange={handleChangeInput} />
                             <label className={styles2.sign_in_gender_option}>No binary</label>
                         </div>

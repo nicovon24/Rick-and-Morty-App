@@ -9,13 +9,21 @@ import CharacterDetails from './components/Characters/Characters/CharacterDetail
 import Favorites from './pages/Favorites.jsx'
 import SignUp from "./pages/Sign_up.jsx"
 import Profile from './pages/Profile.jsx'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
+import { fetchCreatedChar } from './redux/actions'
 
 function App () {
   let [isLogin, setIsLogin] = useState(false)
   let {pathname} = useLocation()
+
+  let dispatch = useDispatch()
   let {profile}  = useSelector(state=>state)
+
+  useEffect(()=>{
+    dispatch(fetchCreatedChar())
+  }, [])
+
   useEffect(()=>{
     if(profile.hasOwnProperty("name")){ //profile tiene siempre img, edad, country, pero no name
       setIsLogin(true)

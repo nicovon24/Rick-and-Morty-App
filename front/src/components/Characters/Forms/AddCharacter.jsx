@@ -1,6 +1,6 @@
 import { useState } from "react"
-import { useDispatch } from "react-redux"
-import { createChar, postData } from "../../../redux/actions"
+import { useDispatch, useSelector } from "react-redux"
+import { addCreatedChar, postCreatedChar } from "../../../redux/actions"
 import styles from "./Forms.module.css"
 
 let arrImg     = [
@@ -10,10 +10,8 @@ let arrImg     = [
     ['Jimenez', 'https://cdns-images.dzcdn.net/images/artist/c7ee19e5a26ed4c381f1ddf2f34c03da/500x500.jpg']
 ]
 
-let API_URL_CREATED_CHAR = `http://localhost:5000/api/created_char/` //API_URL_CREATED_CHAR
-
 export default function FormAddCharacter(){
-    let [inputs, setInputs] = useState({id: 1002, name: "", status: "", species: "", origin: "", gender: "", image: ""}) //img inicial
+    let [inputs, setInputs] = useState({id: "", name: "", status: "", species: "", origin: "", gender: "", image: ""}) //img inicial
 
     //arrays to define the select options
     let arrSpecies = ['Human', 'Alien', 'Humanoid', 'Animal', 'Robot', 'Disease', 'Mythological Creature', 'Poopybutthole', 'unknown', 'Cronenberg'].sort((a,b)=>a.localeCompare(b))
@@ -25,22 +23,20 @@ export default function FormAddCharacter(){
 
     let dispatch = useDispatch()
 
+    let {createdChar} = useSelector(state=>state)
+    
+    if(createdChar.length>0){
+        var id = createdChar[createdChar.length-1].id
+    }
+
+    if(!id) id = 1000
+
     //function to submit
     const handleSubmit = e=>{
         e.preventDefault()
-        let id = 1002
-        //local storage only supports strings, use JSON.stringify and JSON.parse
         if(isFormFilled){
-            let createdChars = JSON.parse(localStorage.getItem('createdCharacters'))
-            if(createdChars.length>0) {
-                id = createdChars[createdChars.length-1].id+1
-                if(!id) id=1002
-            }
-            let newItems = [...createdChars, {...inputs, id: id, url: API_URL_CREATED_CHAR + "?id=" + id}]
-            
-            localStorage.setItem('createdCharacters', JSON.stringify(newItems))
-
-            dispatch(postData(inputs))
+            dispatch(addCreatedChar ({...inputs, id: id+1}))
+            dispatch(postCreatedChar({...inputs, id: id+1}))
 
             setInputs(
                 {name: "", id: "", status: "", species: "", origin: "", gender: "", image: ""

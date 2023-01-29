@@ -2,9 +2,9 @@ import { useEffect, useState  } from "react";
 import styles from "./Characters.module.css"
 import {Link} from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux";
-import { addFavorite, removeFavorite, deleteChar } from "../../../redux/actions";
+import { addFavorite, removeFavorite } from "../../../redux/actions";
 
-export default function Character({character, areCreatedOnes, onRemoveChar}) {
+export default function Character({character, areCreatedOnes, onRemoveChar, showLink}) {
    let [firstEpisodeName, setFirstEpisodeName] = useState("") 
    let [statusColor, setStatusColor] = useState("")
    let [isFavorite, setIsFavorite] = useState(false)
@@ -73,7 +73,8 @@ export default function Character({character, areCreatedOnes, onRemoveChar}) {
                </div>
                </div>
             }
-            <Link to={`/characters/${character.id}`} className={styles.character_link_details}><img src={character?.image} alt="character img"/></Link>
+            {!areCreatedOnes ? <Link to={`/characters/${character.id}`} className={styles.character_link_details}><img src={character?.image} alt="character img"/></Link> 
+            : <img src={character?.image} alt="character img"/>}
          </div>
          
          <div className={styles.character_info}>
