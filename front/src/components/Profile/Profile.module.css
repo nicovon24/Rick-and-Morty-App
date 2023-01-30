@@ -12,7 +12,10 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: black;
+    background-image: url("https://fondosmil.com/fondo/1088.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
 }
 
 .card{

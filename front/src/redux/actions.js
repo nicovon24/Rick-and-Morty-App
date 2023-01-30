@@ -8,23 +8,33 @@ import {
 
 export const getInitialChars = ()=>{
     return async function(dispatch){
-        let response = await axios.get(`http://localhost:3001/api/detail`)
-        return dispatch({
-                type: GET_INITIAL_CHARS,
-                payload: response.data.results
-            }
-        )
+        try{
+            let response = await axios.get(`http://localhost:3001/api/detail`)
+            return dispatch({
+                    type: GET_INITIAL_CHARS,
+                    payload: response.data.results
+                }
+            )
+        }
+        catch(err){
+            console.log(err);
+        }
     }
 }
 
 export const getCharDetails = (id)=>{
     return async function(dispatch){
-        let response = await axios.get(`http://localhost:3001/api/detail/${id}`)
-        return dispatch({
-                type: GET_CHAR_DETAILS,
-                payload: response.data
-            }
-        )
+        try{
+            let response = await axios.get(`http://localhost:3001/api/detail/${id}`)
+            return dispatch({
+                    type: GET_CHAR_DETAILS,
+                    payload: response.data
+                }
+            )
+        }
+        catch(err){
+            console.log(err.message);
+        }
     }
 }
 
@@ -37,11 +47,16 @@ export const deleteChar = (id)=>{
 
 export const searchChar = (input)=>{
     return async function(dispatch){
-        let response = await axios.get(`http://localhost:3001/api/detail/?name=${input}`)
-        return dispatch({
-            type: SEARCH_CHAR,
-            payload: response.data.results
-        })    
+        try{
+            let response = await axios.get(`http://localhost:3001/api/detail/?name=${input}`)
+            return dispatch({
+                type: SEARCH_CHAR,
+                payload: response.data.results
+            }) 
+        }   
+        catch(err){
+            console.log(err);
+        }
     }
 }
 
@@ -54,12 +69,17 @@ export const saveSearchInput = (input)=>{
 
 export const fetchPage = (page)=>{
     return async function(dispatch){
-        let response = await axios.get(`http://localhost:3001/api/detail/?page=${page}`)
-        return dispatch({
-                type: FETCH_PAGE,
-                payload: response.data.results
-            }
-        )
+        try{
+            let response = await axios.get(`http://localhost:3001/api/detail/?page=${page}`)
+            return dispatch({
+                    type: FETCH_PAGE,
+                    payload: response.data.results
+                }
+            )
+        }
+        catch(err){
+            console.log(err.message);
+        }
     }
 }
 
@@ -123,11 +143,16 @@ export const changeProfile = (data)=>{
 
 export let fetchCreatedChar = ()=>{
     return async function(dispatch){
-        let response = await axios("http://localhost:3001/api/created_chars")
-        dispatch({
-            type: FETCH_CREATED_CHAR,
-            payload: response.data.results
-        })
+        try{
+            let response = await axios("http://localhost:3001/api/created_chars")
+            dispatch({
+                type: FETCH_CREATED_CHAR,
+                payload: response.data.results
+            })
+        }
+        catch(err){
+            console.log(err.message);
+        }
     }
 }
 

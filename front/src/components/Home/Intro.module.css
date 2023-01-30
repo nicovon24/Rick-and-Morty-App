@@ -1,9 +1,10 @@
 
 
 .intro{
-  background-image: url("../../assets/fondo.png"); /* https://images.alphacoders.com/876/876589.jpg */
+  background-image: url("../../assets/fondo_desktop.png"); /* https://images.alphacoders.com/876/876589.jpg */
   background-repeat: no-repeat;
   background-position: center;
+  background-size: cover;
   height: 100vh;
   width: 100%;
 }
@@ -108,6 +109,12 @@
   .characters_portal{
     bottom: 80px;
     right: 10px;
+  }
+  .intro{
+    background-image: url("../../assets/fondo_mobile.png"); 
+  }
+  .intro_container{
+    height: 80%;
   }
   
 }

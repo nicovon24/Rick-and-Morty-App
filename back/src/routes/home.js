@@ -16,8 +16,8 @@ routerHome.get("/", (req, res)=>{
                     by_name: main_url + "/detail/?name=rick&sanchez",
                 },
                 created_characters:{
-                    all: main_url + "/created_char",
-                    by_id: main_url + "/created_char/1000"
+                    all: main_url + "/created_chars",
+                    by_id: main_url + "/created_chars/1000"
                 }
             },
         users: {
