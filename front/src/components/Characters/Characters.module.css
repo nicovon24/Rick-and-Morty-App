@@ -1,7 +1,7 @@
 /*todo *** characters part ***/
 .subtitle{
     font-family: 'Rick and Morty font';
-    color: var(--font-orange);
+    color: #02b1c8;
     font-size: 2.8rem;
     padding-top: 100px;
     margin-bottom: 20px;
@@ -9,7 +9,7 @@
 }
 
 .characters_container{ /* includes also the bg color of the nav */
-    background-color: var(--dark-gray);
+    background-image: url('https://cdn.pixabay.com/photo/2018/06/24/08/01/dark-background-3494082_960_720.jpg');
     min-height: 100vh;
 }
 

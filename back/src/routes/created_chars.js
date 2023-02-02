@@ -21,7 +21,7 @@ routerCreatedChars.get('/:id',(req, res) => {
 
 routerCreatedChars.delete('/:id',(req, res) => {
     let {id} = req.params
-    deleteCreatedChar(res, id)
+    if(id) deleteCreatedChar(res, id)
 });
 
 module.exports = routerCreatedChars

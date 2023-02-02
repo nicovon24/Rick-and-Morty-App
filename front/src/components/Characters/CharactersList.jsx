@@ -18,7 +18,7 @@ export default function CharactersList() {
    useEffect(()=>{
       setTimeout(()=>{
          setIsLoading(false)
-      }, [2000])
+      }, [1000])
    }, [])
    
    //*todo dispatch
@@ -51,9 +51,9 @@ export default function CharactersList() {
          <div className={styles.characters_subcontainer}>
 
             {/* search and filter values */}
-            <div className={styles.search_mobile}><SearchCharacter/></div> {/* we show this in mobile, it is at the beginning before the chars list */}
+            <div className={styles.search_mobile}><SearchCharacter/></div>
             <div className={styles.characters_menu}>
-               <div className={styles.search_desktop}><SearchCharacter /></div> {/* we show this in desktop */}
+               <div className={styles.search_desktop}><SearchCharacter /></div>
                <FormAddCharacter/>
                <AddButtons onShowCreatedChars={()=>setIsActiveShowAll(prev=>!prev)} isActiveShowAll={isActiveShowAll}/>
             </div>

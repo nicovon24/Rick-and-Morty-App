@@ -16,7 +16,7 @@ export default function CharacterFavorites({character}){
                     onClick={handleChangeFav}/>
                 </div>
 
-                <Link to={`/characters/${character.id}`}><img src={character?.image} alt=""/></Link>
+                <Link to={`/characters/${character.id}`}><img src={character?.image} className={styles.char_img}  alt=""/></Link>
                 
                 <h2 className={styles.character_name}>{character?.name}</h2>
            

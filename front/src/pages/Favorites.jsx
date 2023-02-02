@@ -9,7 +9,7 @@ export default function Favorites(){
     useEffect(()=>{
         setTimeout(()=>{
             setIsLoading(false)
-        }, [2000])
+        }, [1000])
     }, [])
     return(
         <>

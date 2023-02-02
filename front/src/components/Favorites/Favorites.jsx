@@ -66,7 +66,7 @@ export default function Favorites(){
                         </select>
 
                         <select value={gender} name="gender" onChange={handleChangeGender}>
-                            <option>Order by sex...</option>
+                            <option>Order by gender...</option>
                             <option value="genderless">genderless</option>
                             <option value="male">male</option>
                             <option value="female">female</option>

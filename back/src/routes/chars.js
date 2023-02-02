@@ -13,7 +13,7 @@ routerChars.get("/", (req,res)=>{
 
 routerChars.get("/:id", (req,res)=>{ 
     let {id} = req.params
-    getCharById(res, id)
+    if(id) getCharById(res, id)
 })
 
 module.exports = routerChars

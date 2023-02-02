@@ -6,7 +6,7 @@
     flex-direction: column;
     margin-bottom: 30px;
     padding: 20px;
-    border: 1px solid var(--font-orange);
+    border: 1px solid var(--light-blue);
     width: 400px;
 }
 
@@ -43,7 +43,6 @@
 .add_buttons_btn{
     width: 150px;
 }
-
 
 /* *** tablet ***/
 

@@ -11,11 +11,11 @@
 }
 
 .character_item{
-    background-color: var(--light-gray);
+    background: linear-gradient(90deg, rgb(41, 56, 58) 0%, rgb(34, 48, 50) 35%, rgb(37, 52, 51) 100%); /*222831*/
     color: white;
     font-family: sans-serif;
     border-radius: 10px;
-    padding: 10px;
+    padding: 10px 15px;
 }
 
 /*** characters created ***/
@@ -51,6 +51,9 @@
 
 .character_info{
     padding-left: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
 
 .character_statusColor{
@@ -154,6 +157,22 @@
 .delete_container{ /* aligning it to the right */
     text-align: right;
     position: relative;
+}
+
+.btn_details_container{
+    margin: 15px 0px;
+    width: 100%;
+}
+
+.btn_details{
+    text-decoration: none;
+    color: #5ffbf1;
+    font-weight: 900;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 14px 20px;
+    text-align: center;
 }
 
 

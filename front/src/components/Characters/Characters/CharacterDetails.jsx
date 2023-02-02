@@ -45,7 +45,7 @@ export default function CharacterDetails(){
                         </tbody>
                     </table>
                 </div>
-                <button className={styles.btn_backHome} onClick={handleBackToHome}>Back to characters</button>
+                <button className={`${styles.btn_backHome}`}onClick={handleBackToHome}>Back to characters</button>
             </div>
         </>
     )
