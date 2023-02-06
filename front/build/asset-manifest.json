@@ -1,0 +1,33 @@
+{
+  "files": {
+    "main.css": "/Rick-and-Morty-App/static/css/main.b1bd6291.css",
+    "main.js": "/Rick-and-Morty-App/static/js/main.8d43f41c.js",
+    "static/media/nico_nav.png": "/Rick-and-Morty-App/static/media/nico_nav.f763369c70bf46acece4.png",
+    "static/media/fondo_desktop.png": "/Rick-and-Morty-App/static/media/fondo_desktop.55b81f44f9596d5f93a9.png",
+    "static/media/fondoMio.png": "/Rick-and-Morty-App/static/media/fondoMio.88a08ab18e4b2bb0267a.png",
+    "static/media/fondo_mobile.png": "/Rick-and-Morty-App/static/media/fondo_mobile.b89c24d95a54382a2cb0.png",
+    "static/media/portal.png": "/Rick-and-Morty-App/static/media/portal.8833992592954c527480.png",
+    "static/media/node.png": "/Rick-and-Morty-App/static/media/node.292b2083b0a936c1f586.png",
+    "static/media/cv.pdf": "/Rick-and-Morty-App/static/media/cv.a34bbc6b94c8de55cad2.pdf",
+    "static/media/react.png": "/Rick-and-Morty-App/static/media/react.cf290d55b6f2a2db35cb.png",
+    "static/media/logo.png": "/Rick-and-Morty-App/static/media/logo.df73b7db546a5a50f92d.png",
+    "static/media/mongo.png": "/Rick-and-Morty-App/static/media/mongo.9cc0b260083b2e0cc147.png",
+    "static/media/logo.ttf": "/Rick-and-Morty-App/static/media/logo.c3d1dfc692e3547fed16.ttf",
+    "static/media/sql.png": "/Rick-and-Morty-App/static/media/sql.96af83e68e3b32fb2dd7.png",
+    "static/media/github.png": "/Rick-and-Morty-App/static/media/github.8b4b2cb3f7040c3f4e4f.png",
+    "static/media/cv.png": "/Rick-and-Morty-App/static/media/cv.4ec75d59caab8fa28e11.png",
+    "static/media/c_sharp.png": "/Rick-and-Morty-App/static/media/c_sharp.4a32f53d425c7ad4cb05.png",
+    "static/media/delete_blue.png": "/Rick-and-Morty-App/static/media/delete_blue.d870ac39cde01c19e2d2.png",
+    "static/media/linkedin.png": "/Rick-and-Morty-App/static/media/linkedin.3e6df4a0dd57409c7f9d.png",
+    "static/media/html.png": "/Rick-and-Morty-App/static/media/html.cfb2ba4a6b1c3de295bc.png",
+    "static/media/css.png": "/Rick-and-Morty-App/static/media/css.4a6549b8c2b4cda8bb88.png",
+    "static/media/js.png": "/Rick-and-Morty-App/static/media/js.3dfb665e058d08c99f28.png",
+    "index.html": "/Rick-and-Morty-App/index.html",
+    "main.b1bd6291.css.map": "/Rick-and-Morty-App/static/css/main.b1bd6291.css.map",
+    "main.8d43f41c.js.map": "/Rick-and-Morty-App/static/js/main.8d43f41c.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b1bd6291.css",
+    "static/js/main.8d43f41c.js"
+  ]
+}
