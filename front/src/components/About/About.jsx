@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom"
 import PdfFile from "../../assets/cv.pdf"
 
 export default function About(){
-    let toNavigate = useNavigate()
     return(
         <>
             <div className={styles.aboutContainer}>
