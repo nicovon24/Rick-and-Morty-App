@@ -1,6 +1,6 @@
 .subtitle{
-    font-family: 'Rick and Morty font';
-    color: var(--font-orange);
+    font-family: 'Creepster';
+    color: white;
     font-size: 2.8rem;
     text-align: center;
     padding-bottom: 20px;
@@ -12,39 +12,75 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-image: url("https://fondosmil.com/fondo/1088.jpg");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
+    background: linear-gradient(89.4deg, rgb(74, 77, 103) -4.3%, rgb(119, 125, 165) 102.1%);
 }
 
 .card{
     background-color: rgb(45, 44, 44);
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    /* grid-template-columns: 1fr 1fr; */
     grid-gap: 20px;
-    max-width: 600px;
+    min-width: 300px;
+    max-width: 400px;
     margin: 0 auto;
-    padding: 20px 15px;
     border: 3px solid white;
     border-radius: 15px;
     line-height: 1.4;
+    padding-bottom: 15px;
 }
 
 .card h1{
-    font-size: 2.2rem;
+    font-size: 1.8rem;
     color: var(--font-orange);
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-}
-.card li {
-    font-size: 1.2rem;
-    color: white;
-    list-style: circle;
-    margin-left: 20px;
+    font-family: 'Mochiy Pop One', sans-serif;
+    letter-spacing: 0.1rem;
+    text-transform: capitalize;
+    padding-bottom: 6px;
+    margin-left: 10px;
 }
 
-.image{
-    max-width: 300px;
+.card_img_fondo{
+    background-color: rgb(204, 227, 225);
+    border-bottom: 50px solid rgb(45, 44, 44);
+    border-right: 0px solid rgb(45, 44, 44);
+    border-left: 50px solid transparent;
+    height: 170px;
+    width: 294.5px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    position: absolute;
+}
+
+.card_img_container{
+    width: 100%;
+    text-align: center;
+}
+
+.card_img_container img{
+    width: 200px;
+    margin: 15px 25px;
+    margin-bottom: 0px;
+    position: relative;
+    z-index: 9000;
+    border-radius: 50%;
+    border: 5px solid black;
+}
+
+.separate_first{
+    color: var(--font-orange);
+    padding-right: 20px;
+    font-family: 'Permanent Marker', cursive;
+}
+
+.separate_second{
+    color: rgb(197, 192, 192);
+    font-size: 0.9rem;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.container table{
+    display: flex;
+    margin-left: 10px;
 }
 
 @media(max-width: 800px){

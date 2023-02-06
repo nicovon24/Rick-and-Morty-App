@@ -5,15 +5,29 @@
     font-weight: normal;
     src: local('Rick and Morty font'), url('./fonts/logo.ttf') format('woff');
 }
+@import url('https://fonts.googleapis.com/css2?family=Creepster&family=Gloria+Hallelujah&family=Indie+Flower&family=Itim&family=Josefin+Sans&family=Luckiest+Guy&family=Mochiy+Pop+One&family=Permanent+Marker&display=swap');
+
+/* font-family: 'Itim', cursive;
+font-family: 'Josefin Sans', sans-serif;
+font-family: 'Mochiy Pop One', sans-serif;
+font-family: 'Permanent Marker', cursive;
+font-family: 'Luckiest Guy', cursive;
+font-family: 'Creepster', cursive;
+font-family: 'Gloria Hallelujah', cursive;
+font-family: 'Indie Flower', cursive;
+*/
 
 :root{
     --dark-gray : rgb(39, 43, 51);
     --light-gray: #3c3e44;
     --light-blue: #02b1c8;
+    --bright-light-blue: #5ffbf1;
     --font-gray : rgb(158, 158, 158);
     --input-color: rgb(189, 206, 210);
     --font-orange: orange;
     --forms-green: rgb(26, 202, 26);
+    --placeholder-pink: rgb(203, 189, 189);
+    --dark-blue: linear-gradient(90deg, rgb(41, 56, 58) 0%, rgb(34, 48, 50) 35%, rgb(37, 52, 51) 100%);
 }
 
 *{
@@ -26,55 +40,14 @@ input{
     text-transform: capitalize;
 }
 
-.animated_btn{
-min-width: 120px;
-font-size: 0.7rem;
-line-height: 15px 5px;
-padding: 15px 10px;
-font-family: sans-serif;
-text-decoration: none;
-color: #333;
-border: none;
-letter-spacing: 2px;
-text-align: center;
-position: relative;
-transition: all .35s;
-margin-top: 5px;
-margin-right: 5px;
-cursor: pointer;
-}
-
-.animated_btn:after{
-position: absolute;
-content: "";
-top: 0;
-left: 0;
-width: 0;
-height: 100%;
-background-color: rgb(197, 187, 187);
-transition: all .35s;
-}
-
-.animated_btn:hover{
-color: var(--light-gray);
-}
-
-.animated_btn:hover:after{
-width: 100%;
-}
-
-.animated_btn label{
-position: relative;
-z-index: 9000;
-}
-
+/*todo BUTTONS */
 .btn_animated_border:focus {
-  color: #5ffbf1;
+  color: var(--bright-light-blue);
 }
 
 .btn_animated_border {
-  box-shadow: inset 0 0 0 3px #5ffbf1;
-  color: #5ffbf1;
+  box-shadow: inset 0 0 0 3px var(--bright-light-blue);
+  color: var(--bright-light-blue);
   transition: color 0.25s 0.0833333333s;
   position: relative;
 }
@@ -103,7 +76,7 @@ z-index: 9000;
 }
 
 .btn_animated_border:hover {
-  color: var(--font-orange); /*ff71c6*/
+  color: var(--font-orange); /*#ff71c6*/
 }
 
 .btn_animated_border:hover::before,
@@ -125,26 +98,31 @@ z-index: 9000;
 
 
 .input_primary{
-max-width: 300px;
-background-color: rgb(197, 187, 187);
-border: none;
-outline: none;
-padding: 12px;
-width: 100%;
-border-radius: 5px;
+  max-width: 300px;
+  background-color: transparent;
+  color: rgb(203, 189, 189);
+  border: 2px solid var(--light-blue); /* o rgb(203, 189, 189) */
+  border-radius: 5px;
+  outline: none;
+  padding: 12px;
+  width: 100%;
+}
+
+.input_primary option{
+  color: black;
 }
 
 .input_primary::placeholder{
-    color: var(--light-gray);
+    color: rgb(203, 189, 189);
 }
 
 .input_invalid:focus{
-    outline: 2px solid red;
+    border: 2px solid red;
     transition: 1s;
 }
 
 .input_valid{
-    outline: 2px solid green;
+    border: 2px solid green;
     transition: 1s;
 }
 
@@ -351,42 +329,58 @@ button{
     color: #bacbd9;
  }
 }
- 
 
-/* .loader{
-    display: block;
-    position: relative;
-    height: 12px;
-    min-width: 350px;
-    border: 1px solid #fff;
-    border-radius: 10px;
-    overflow: hidden;
+.active{
+  border-bottom: 2px solid rgb(203, 189, 189);
+}
+
+.btn_backHome{
+  background-color: black;
+  box-shadow: inset 0 0 0 3px red;
+  color: white;
+  font-size: 0.9rem;
+  font-weight: 600;
+  outline: none;
+  border-radius: 50px;
+  margin-top: 20px;
+  padding: 12px 20px;
+  cursor: pointer;
+  font-family: 'Permanent Marker', cursive;
+}
+
+.btn_backHome:hover{
+  background-color: white;
+  color: black;
+  transform: scale(0.95);
+  transition: 0.5s;
+}
+
+.waviy {
+  position: relative;
+}
+
+.animated_title span {
+  position: relative;
+  display: inline-block;
+  text-transform: uppercase;
+  animation: flip 4s infinite;
+  animation-delay: calc(.4s * var(--i))
+}
+
+/* animation title created Char */
+.animated_title.created_char span {
+  animation: flipCreated 8s infinite;
+  animation-delay: calc(.4s * var(--i))
+}
+
+@keyframes flip {
+  0%,95% {
+    transform: rotateY(360deg) 
   }
-  .loader::after {
-    content: '';
-    width: 40%;
-    height: 100%;
-    background: var(--light-blue);
-    position: absolute;
-    top: 0;
-    left: 0;
-    box-sizing: border-box;
-    animation: animloader 2s linear infinite;
+}
+
+@keyframes flipCreated {
+  0%,95% {
+    transform: rotateY(360deg) 
   }
-  
-  @keyframes animloader {
-    0% {
-      left: 0;
-      transform: translateX(-100%);
-    }
-    100% {
-      left: 100%;
-      transform: translateX(0%);
-    }
-  }
-  
-@media(min-width: 800px){
-    .loader{
-        min-width: 450px;
-      }
-} */
+}

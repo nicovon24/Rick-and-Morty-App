@@ -10,6 +10,7 @@ import {NormalCharactersList, CreatedCharactersList} from "./Characters/Lists.js
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchPage, getInitialChars } from '../../redux/actions.js';
 import Loader from '../Loader/Loader.jsx';
+import TitlesFlip from '../Titles_Flip/TitlesFlip.jsx';
 
 export default function CharactersList() {
    // let {character, characters, setCharacters} = useContext(DataContext)
@@ -47,7 +48,7 @@ export default function CharactersList() {
          {isLoading ? <Loader/>
          : 
          <div className={styles.characters_container}>
-         <p className={styles.subtitle}>{isActiveShowAll ? "Characters" : "Created Characters"}</p>
+         {isActiveShowAll ? <TitlesFlip word={"Characters"} styles={styles.subtitle}></TitlesFlip>: <TitlesFlip word={"Created-Characters"} styles={styles.subtitle} classes={"created_char"}/>}
          <div className={styles.characters_subcontainer}>
 
             {/* search and filter values */}

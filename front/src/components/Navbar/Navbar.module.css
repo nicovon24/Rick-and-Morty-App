@@ -1,26 +1,23 @@
 /************************** globals **************************/
 
+.nav_container{
+    width: 100%;
+    position: fixed;
+    z-index: 90000;
+}
+
 .nav{
     width: 100%;
     display: grid;
     grid-template-columns: 1fr;
-    position: fixed;
-    z-index: 90000;
     opacity: 0.8;
     color: white; 
 }
 
-.nav_title{
-    font-family: 'Rick and Morty font';
-    color: white;
-    font-size: 1.8rem;
-    padding-top: 10px;
-    cursor: pointer;
-}
-
 .nav_links{
     text-decoration: none;
-    color: white;
+    color: var(--placeholder-pink);;
+    font-family: 'Indie Flower', cursive;
 } 
 
 .logo{
@@ -28,7 +25,7 @@
 }
 
 .nav_links:hover{
-    color: var(--light-blue);
+    font-weight: 900;
     cursor: pointer;
 }
 

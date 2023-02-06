@@ -18,9 +18,9 @@
     z-index: 9000;
 }
 
-.h1{
-    font-size: 1.8rem;
-    font-family: 'Rick and Morty font';
+.subtitle{
+    font-size: 2.2rem;
+    font-family: 'Creepster', cursive;
     text-align: center;
     color: var(--font-orange);
 }
@@ -37,6 +37,7 @@
     margin-top: 15px;
     padding: 30px 60px;
     border: 2px solid var(--font-orange);
+    font-family: 'Mochiy Pop One', sans-serif;
 }
 
 .form *, .btn_hide{
@@ -46,17 +47,15 @@
 .form input, .form label{
     color: white;
 }
-
-.form input::placeholder{
-    color: rgb(174, 167, 167);
-}
-
-
 .input, .divPassword{
     width: 100%;
     margin: 15px 0px;
     padding: 10px;
     background-color: transparent;
+}
+
+.form input::placeholder{
+    color: rgb(203, 189, 189);
 }
 
 .input_name{
@@ -109,8 +108,7 @@
     border-radius: 15px;
     display: block;
     width: 100%;
-    font-size: 1.2rem;
-    font-weight: 900;
+    font-size: 0.8rem;
     background: rgb(186, 151, 84);
 }
 
@@ -131,6 +129,7 @@
 
 .checkbox_container label{
     color: white;
+    font-size: 0.8rem;
 }
 
 .checkbox_container input{

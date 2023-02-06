@@ -1,12 +1,15 @@
 .subtitle{
     font-family: 'Rick and Morty font';
-    color: var(--font-orange);
+    color: white;
     font-size: 2.5rem;
-    padding-bottom: 30px;
     text-align: center;
+    padding: 20px;
 }
 .favorites_container{
-    background-image: url('https://cdn.pixabay.com/photo/2018/06/24/08/01/dark-background-3494082_960_720.jpg');
+    background-image: url('https://img.freepik.com/vector-gratis/fondo-abstracto-grunge-negro-amarillo_1017-26684.jpg?w=1060&t=st=1675462297~exp=1675462897~hmac=45a65ecf5d1199a303f96780cd5c7daff38c8a374c1717e90f29b723c27053d1');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
     min-height: 100vh;
     padding: 120px 0px;
 }
@@ -24,25 +27,27 @@
     color: white;
     font-family: sans-serif;
     border-radius: 10px;
-    padding: 10px;
+    padding: 15px;
     margin: 0 auto;
     width: 85%;
 }
 
 .character_name{
     color: var(--font-orange);
-    font-size: 1.8rem;
+    font-size: 1.3rem;
     text-align: center;
+    font-family: 'Mochiy Pop One', sans-serif;
 }
 
 .char_img{
     width: 100%;
-    height: 300px;
+    height: 240px;
+    object-fit: cover;
     position: relative;
 }
 
 .none_favorites{
-    color: var(--font-orange);
+    color: white;
     font-size: 1.5rem;
     display: flex;
     justify-content: center;
@@ -57,11 +62,12 @@
 }
 
 .form_favorites select{
-    font-size: 1.1rem;
+    font-size: 0.9rem;
     padding: 8px 20px;
     background-color: transparent;
-    border: 2px solid var(--font-orange);
-    color: var(--font-orange);
+    border: 2px solid white;
+    color: white;
+    font-weight: 900;
     border-radius: 5px;
     line-height: 1.2;
     margin: 20px;

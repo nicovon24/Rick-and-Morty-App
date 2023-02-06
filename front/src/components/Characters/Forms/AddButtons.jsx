@@ -5,8 +5,8 @@ export default function AddButtons({onShowCreatedChars, isActiveShowAll}){
         <div className={styles.character_form}>
             <p className={styles.character_filterTitle}>Created characters actions:</p>
             <div>
-                <button className={`animated_btn ${styles.add_buttons_btn}`} onClick={onShowCreatedChars}>
-                    {isActiveShowAll ? <label>Show the created</label> : <label>Show all characters</label>}
+                <button className={`btn_animated_border ${styles.btn} ${styles.add_buttons_btn}`} onClick={onShowCreatedChars}>
+                    {isActiveShowAll ? 'Show the created': 'Show all characters'}
                 </button>
             </div>
         </div>

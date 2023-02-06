@@ -94,12 +94,15 @@ export default function Character({character, areCreatedOnes, onRemoveChar, show
             
             {!areCreatedOnes ? 
             <div className={styles.btn_details_container}>
-               <Link to={`/characters/${character.id}`} className={`${styles.btn_details} btn_animated_border`}>View details</Link>
+               <Link to={`/characters/${character?.id}`} className={`${styles.btn_details} btn_animated_border`}>View details</Link>
             </div>
             : 
-            <div className="character-id">
-               <p className={styles.character_subtitle}>ID:</p>
-               <p>{character.id}</p>
+            <div className={styles.created_info}>
+               <span className={styles.character_subtitle}>Origin: </span>
+               <span>{character?.origin}</span><br></br><br></br>
+
+               <span className={styles.character_subtitle}>ID: </span>
+               <span>{character?.id}</span><br></br><br></br>
             </div>}
          </div>
       </div>

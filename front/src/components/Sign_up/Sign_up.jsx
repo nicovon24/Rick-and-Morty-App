@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEye,  faXmark } from '@fortawesome/free-solid-svg-icons'
 import {NavLink, useNavigate} from "react-router-dom"
 import { postUser } from "../../redux/actions"
+import TitlesFlip from "../Titles_Flip/TitlesFlip.jsx"
 
 export default function SignUp(){
     let [isHiddenActive, setIsHiddenActive] = useState(true)
@@ -64,7 +65,8 @@ export default function SignUp(){
     return(
         <div className={styles2.signUp_container}>
             <div className={styles.subcontainer}>
-                <h1 className={styles.h1}>USER SIGN UP</h1>
+                <TitlesFlip word={"User-Sign-up"} classes={styles.subtitle}/>
+                {/* <h1 className={styles.h1}>USER SIGN UP</h1> */}
                 <form className={styles.form} onSubmit={handleSubmit}>
                     <div className={styles2.name_container}>
                         <input className={`${styles.input} ${styles.input_name}`} placeholder="First name..." name="fname" maxLength={15} autoComplete="first-name"

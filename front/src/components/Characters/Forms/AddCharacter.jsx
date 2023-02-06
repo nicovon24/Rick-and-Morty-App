@@ -91,7 +91,7 @@ export default function FormAddCharacter(){
             {isFormFilled ? "" : <p className={styles.uncompleted_data}>Uncompleted data</p>}
 
             <div>
-                <button className="animated_btn" type="submit" name="submit"><label>Submit</label></button>
+                <button className={`btn_animated_border ${styles.btn}`} type="submit" name="submit">Submit</button>
             </div>
         </form>
     )

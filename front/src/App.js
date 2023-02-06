@@ -1,6 +1,6 @@
 import './App.css'
 import Characters from './pages/Characters.jsx'
-import {Routes, Route, useNavigate, useLocation} from "react-router-dom"
+import {Routes, Route, useLocation} from "react-router-dom"
 import Home from './components/Home/Intro.jsx'
 import Error from './components/Error/Error.jsx'
 import About from './pages/About.jsx'
@@ -42,10 +42,12 @@ function App () {
     <div className="App"><Routes>
           <Route exact path="/" element={<Login/>}></Route>
           <Route exact path="/home" element={<Home/>}></Route>
-          <Route exact path="/characters" element={<Characters/>}></Route>
-          {/* <Route exact path="/characters" element={isLogin ? <Characters/> : <Login/>}></Route> */}
+          {/* <Route exact path="/characters" element={<Characters/>}></Route> */}
+          <Route exact path="/characters" element={isLogin ? <Characters/> : <Login/>}></Route>
+          {/* <Route exact path="/characters/:id" element={<CharacterDetails/>}></Route> */}
           <Route exact path="/characters/:id" element={isLogin ? <CharacterDetails/> : <Login/>}></Route>
-          <Route exact path="/about" element={isLogin ? <About/> : <Login/>}></Route>
+          <Route exact path="/about" element={<About/>}></Route>
+          {/* <Route exact path="/about" element={isLogin ? <About/> : <Login/>}></Route> */}
           <Route exact path="/favorites" element={isLogin ? <Favorites/> : <Login/>}></Route>
           <Route exact path="/sign_up" element={<SignUp/>}></Route>
           <Route exact path="/profile" element={isLogin ? <Profile/> : <Login/>}></Route>

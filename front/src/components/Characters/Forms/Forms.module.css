@@ -6,8 +6,11 @@
     flex-direction: column;
     margin-bottom: 30px;
     padding: 20px;
-    border: 1px solid var(--light-blue);
+    border: 1px solid var(--bright-light-blue);
+    background-color: transparent;
     width: 400px;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.9rem;
 }
 
 .character_filterTitle{
@@ -15,7 +18,7 @@
     font-size: 1.1rem;
     padding-bottom: 10px;
     align-self: flex-start;
-    text-decoration: underline;
+    font-family: 'Luckiest Guy', cursive;
 }
 
 .character_subtitle{
@@ -26,13 +29,14 @@
 .uncompleted_data{
     padding-top: 8px;
     color: red;
+    font-size: 0.8rem;
 }
 
 /* *** add form ***/
 
 .add_property{
-    color: var(--font-gray);
-    margin: 5px 0px;
+    color: var(--placeholder-pink);
+    margin: 10px 0px;
 }
 
 .add_file_input{
@@ -42,6 +46,15 @@
 /*** created characters buttons ***/
 .add_buttons_btn{
     width: 150px;
+}
+
+.btn{
+    background-color: transparent;
+    width: 130px;
+    height: 50px;
+    margin-top: 10px;
+    font-family: 'Mochiy Pop One', sans-serif;
+    font-size: 0.7rem;
 }
 
 /* *** tablet ***/

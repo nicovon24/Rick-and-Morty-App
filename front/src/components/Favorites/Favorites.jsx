@@ -6,6 +6,7 @@ import { useState } from "react"
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { filterFavoriteAscendant, filterFavoriteDescendant, filterFavoriteGender, restartMatchedFav } from "../../redux/actions"
+import TitlesFlip from "../Titles_Flip/TitlesFlip"
 
 export default function Favorites(){
     // let {favorites, setFavorites, initialFavorites} = useContext(DataContext)
@@ -54,7 +55,8 @@ export default function Favorites(){
     return(
         <>
             <div className={`${styles.favorites_container}`}>
-                <h1 className={styles.subtitle}>FAVORITES</h1>
+                <TitlesFlip word={"Favorites"} classes={styles.subtitle}/>
+                {/* <h1 className={styles.subtitle}>FAVORITES</h1> */}
 
                 {initialFavorites.length>0 ?
                 <>

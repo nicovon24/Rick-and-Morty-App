@@ -37,7 +37,7 @@ export default function SearchCharacter(){
                 {searchInput ? "" : <p className={styles.uncompleted_data}>Uncompleted data</p>}
 
                 <div>
-                    <button className="animated_btn" type="submit"><label>Submit</label></button>
+                    <button className={`btn_animated_border ${styles.btn}`} type="submit">Submit</button>
                 </div>
             </form>
         </>

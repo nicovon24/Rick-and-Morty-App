@@ -11,11 +11,13 @@
 }
 
 .character_item{
-    background: linear-gradient(90deg, rgb(41, 56, 58) 0%, rgb(34, 48, 50) 35%, rgb(37, 52, 51) 100%); /*222831*/
+    background: var(--dark-blue);
     color: white;
     font-family: sans-serif;
     border-radius: 10px;
     padding: 10px 15px;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.9rem;
 }
 
 /*** characters created ***/
@@ -28,8 +30,12 @@
 }
 
 .character_name{
+    font-size: 1.1rem;
     color: var(--font-orange);
     text-transform: capitalize;
+    padding: 10px 0px;
+    font-family: 'Mochiy Pop One', sans-serif;
+    letter-spacing: 0.1rem;
 }
 
 .character_item img{
@@ -37,7 +43,6 @@
     height: 280px;
     position: relative;
 }
-
 
 .character_close{
     z-index: 100;
@@ -64,10 +69,10 @@
     margin-right: 5px;
 }
 
-.character_subtitle{
+/* .character_subtitle{
     padding: 8px 0px;
     color: rgb(175, 168, 168);
-}
+} */
 
 .character_link_details{
     text-decoration: none;
@@ -78,10 +83,32 @@
 .dead   {background-color: red;}
 .unknown{background-color: rgb(169, 162, 162);}
 
+
+
+.btn_details_container{
+    margin: 15px 0px;
+    width: 100%;
+}
+
+.btn_details{
+    text-decoration: none;
+    color: #5ffbf1;
+    font-size: 0.75rem;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 14px 20px;
+    text-align: center;
+    font-family: 'Mochiy Pop One', sans-serif;
+}
+
 /*todo *** character details ***/
 .details_container{
     min-height: 100vh;
-    background-color: var(--dark-gray);
+    background-image: url('https://img.freepik.com/vector-gratis/fondo-abstracto-grunge-negro-amarillo_1017-26684.jpg?w=1060&t=st=1675462297~exp=1675462897~hmac=45a65ecf5d1199a303f96780cd5c7daff38c8a374c1717e90f29b723c27053d1');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
     display: flex;
     flex-direction: column;
     padding-top: 200px;
@@ -89,17 +116,37 @@
 }
 
 .card{
+    width: 291px;
     border-radius: 10px;
     background-color: var(--light-gray);
     font-size: 1.1rem;
     max-width: 350px;
-    padding: 10px;
     line-height: 1.3;
 }
 
-.card img{
+.card_img_fondo{
+    background-color: rgb(204, 227, 225);
+    border-bottom: 40px solid var(--light-gray);
+    border-right: 0px solid var(--light-gray);
+    border-left: 50px solid transparent;
+    position: absolute;
+    height: 120px;
+    width: 291px;
+}
+
+.card_img_container{
     width: 100%;
+    text-align: center;
+}
+
+.card img{
+    width: 160px;
     object-fit: cover;
+    border-radius: 50%;
+    position: relative;
+    z-index: 9000;
+    margin-top: 20px;
+    border: 4px solid black;
 }
 
 .card p{
@@ -107,30 +154,54 @@
 }
 
 .details_name{
-    color: var(--font-orange);
-    font-size: 2rem;
-    padding-bottom: 15px;
+    color: white;
+    font-weight: 900;
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    font-family: 'Creepster';
+    text-transform: uppercase;
+    letter-spacing: 3px;
 }
 
 .separate_first{
     color: var(--font-orange);
     padding-right: 20px;
-    font-weight: 900;
+    font-family: 'Permanent Marker', cursive;
 }
 
 .separate_second{
     color: rgb(197, 192, 192);
+    font-size: 0.9rem;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.details_container table{
+    margin: 20px;
+    padding: 0px 5px;
 }
 
 .btn_backHome{
-    background-color: var(--font-orange);
+    background-color: black;
+    box-shadow: inset 0 0 0 3px red;
+    color: white;
+    font-size: 0.9rem;
+    font-weight: 600;
     outline: none;
-    border: none;
-    border-radius: 3px;
+    border-radius: 50px;
     margin-top: 20px;
-    padding: 7px 15px;
+    padding: 12px 20px;
     cursor: pointer;
+    font-family: 'Permanent Marker', cursive;
 }
+
+.btn_backHome:hover{
+    background-color: white;
+    color: black;
+    transform: scale(0.95);
+    transition: 0.5s;
+}
+
+/*todo OTROS*/
 
 .none_characters{ /* msg shown when there is no character matching the result */
     color: var(--font-orange);
@@ -149,6 +220,12 @@
     cursor: pointer;
 }
 
+.created_info{
+    margin-top: 15px;
+}
+
+/*todo FAVS */
+
 .fav_subcontainer img{
     position: absolute;
     z-index: 1000;
@@ -157,22 +234,6 @@
 .delete_container{ /* aligning it to the right */
     text-align: right;
     position: relative;
-}
-
-.btn_details_container{
-    margin: 15px 0px;
-    width: 100%;
-}
-
-.btn_details{
-    text-decoration: none;
-    color: #5ffbf1;
-    font-weight: 900;
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    padding: 14px 20px;
-    text-align: center;
 }
 
 

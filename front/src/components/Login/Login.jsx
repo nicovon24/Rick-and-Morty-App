@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { NavLink, useNavigate } from "react-router-dom"
 import {useDispatch} from "react-redux"
 import {changeProfile} from "../../redux/actions.js"
@@ -6,6 +6,7 @@ import styles from "./Login.module.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEye, faXmark } from '@fortawesome/free-solid-svg-icons'
 import { users_data } from "../../data/users_data.js"
+import TitlesFlip from "../Titles_Flip/TitlesFlip.jsx"
 
 export default function Login(){
     let [name, setName] = useState("")
@@ -51,7 +52,8 @@ export default function Login(){
     return(
         <div className={styles.login_container}>
             <div className={styles.subcontainer}>
-                <h1 className={styles.h1}>USER LOGIN</h1>
+                <TitlesFlip word={"User-Login"} classes={styles.subtitle}/>
+                {/* <h1 className={styles.h1}>USER LOGIN</h1> */}
                 <form className={styles.form} onSubmit={handleSubmitForm}>
                     <input className={`${styles.input} ${styles.input_name}`} placeholder="Username..." 
                     onChange={e=>setName(e.target.value)}></input>
