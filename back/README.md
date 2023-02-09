@@ -1,139 +1,242 @@
-# HW 03: Promises | Integración
+# HW 03: Sequelize part 1 | Integration
 
 ## **🕒 Duración estimada**
 
 x minutos
 
-<br />
-
 ---
-
-## **💻 Rick & Morty App**
-
-### **📝 INTRO**
-
-En esta homework vamos a seguir trabajando en nuetra App de Rick & Morty del lado del servidor. En esta ocasión crearemos algunas rutas asincrónicas que nos permitirán darle mejor funcionamiento a nuestra aplicación.
-
-Crearemos una ruta para manejar las funcionalidades:
-
--  GET onSearch
--  GET Detail
--  GET favorites
--  POST favorites
--  DELETE favorites
 
 <br />
 
+## **📌 INTRO**
+
+En esta homework pondremos en práctica todo lo que hemos aprendido hasta ahora sobre Sequelize. Aplicaremos nuestros conocimientos para conectar nuestro código con una nueva base de datos para nuestro proyecto de Rick & Morty.
+
 ---
-
-## **📋 INSTRUCCIONES**
-
-### **👩‍💻 EJERCICIO 1**
-
-### **GET Search**
-
-1. Dirígete a tu carpeta `controllers` y crea un archivo llamado `getCharById.js`. Dentro de este archivo deberás:
-
-   -  Declarar una variable con el nombre "_getCharById_" y exportarla. Esta variable será una función que recibe dos parámetros: **res** y **id**.
-
-   -  Dentro de la función deberás hacer una petición (_código asincrónico_) a la URL `https://rickandmortyapi.com/api/character/`. Debes utilizar promesas para realizar esto. Recuerda que debes agregar el ID recibido por parámetro al final de esta URL.
-
-   -  Una vez que tienes la respuesta de la petición, crea un objeto en el que guardarás las propidades **image**, **name**, **gender** y **species** que recibiste como respuesta (todos los datos de la petición se encuentran dentro de una propiedad llamada **data**).
-
-   -  Una vez creado el objeto, deberás devolver una respuesta con status `200`, un Content-Type igual a `application/json`, y finalmente responde el objeto que creaste convertido en JSON:
-
-      ```javascript
-      res.end(JSON.stringify(objeto));
-      ```
-
-   -  En el caso de que la promesa tenga algún fallo es importante que concatenes un `.catch` al final de la promesa para poder manejar el error. Dentro del catch deberás devolver una respuesta con status `500`, un Content-Type igual a `text/plain`, y finalmente responde con la propiedad **message** del error.
-
-> **[NOTA]:** puedes utilizar axios o fetch. ¡Como más gustes!
-
-2. ¡Listo! Ya tenemos nuestro primer controlador. Ahora lo vamos a utilizar en nuestra ruta. Para esto, dirígete al archivo llamado **`src/routes/server.js`**. **Elimina** todo el contenido de este archivo.
-
-3. Dentro de este archvio tendrás que:
-
-   -  Importar **http** y el controlador que creaste.
-
-   -  Crear y levantar un servidor en el puerto **3001**.
-
-   -  Dentro del callback del servidor debes:
-
-      -  copiar y pegar la siguiente línea:
-
-      ```javascript
-      res.setHeader('Access-Control-Allow-Origin', '*');
-      ```
-
-      > **[NOTA]**: esta línea permitirá contectar tu FRONT con el SERVIDOR sin que haya problemas de CORS.
-
-      -  crear un condicional que pregunte si la **url** incluye el string "_**onsearch**_". En el caso de que si lo incluya deberás ejecutar el controlador pasándole como argumentos:
-
-         -  El parámetro **`res`**.
-
-         -  El segundo parámetro debe ser el ID del personaje que recibes mediante la URL.
-
-      > **[PISTA]:** dentro del parámetro **`req.url`** está el id del personaje. Puedes utilizar el método split() para obtenerlo...
 
 <br />
 
----
+## **✅ Pasos básicos para realizar la homework**
 
-### **👩‍💻 EJERCICIO 2**
+Lo primero que debemos hacer es instalar las librerías necesarias para continuar con este proyecto. Para esto, en el **`package.json`** de tu Back-End instala las siguientes librerías:
 
-### **GET Detail**
+-  sequelize
+-  pg
+-  dotenv
 
-Ahora crearemos la ruta para obtener el detalle de un personaje.
+Para poder realizar esta homework, lo primero que deberás hacer es crear la base de datos que utilizaremos para nuestro proyecto de Rick & Morty. Para esto abre la terminal **`SQL Shell (psql)`** e ingresa con tu información. Utilizando el comando que ya conoces crea la base de datos que debe tener como nombre: **`rickandmorty`**.
 
-1. Dirígete a tu carpeta `controllers` y crea un archivo llamado `getCharDetail.js`. Dentro de este archivo deberás:
+> [**NOTA**]: es muy importante que el nombre de la base de datos sea este y no otro.
 
-   -  Declarar una variable con el nombre "_getCharDetail_" y exportarla. Esta variable será una función que recibe dos parámetros: **res** y **id**.
+Puedes verificar que se haya creado correctamente con el comando:
 
-   -  El resto de la lógica de esta función es exactamente igual al ejercicio anterior, con la diferencia que esta vez debes obtener todas estas propiedades del personaje: **image**, **name**, **gender**, **status**, **origin** y **species**.
-
-2. En tu archivo **`server.js`** tienes que:
-
-   -  Importar el nuevo controlador.
-
-   -  Crear un condicional que verifique si la URL recibida incluye el string "_**detail**_". En el caso de que esto sea verdadero tendrás que obtener el ID que recibes al final de la URL, y ejecutar este controlador pasándole como parámetros: **res** y **ID**.
-
-<br />
-
----
-
-### **👀 COMPROBEMOS...**
-
-Levanta el servidor con el comando:
-
-```bash
-    npm start
+```SQL
+   \l
 ```
 
-Una vez levantado, verifica lo siguiente:
+Una vez hecho esto deberás crear un archivo llamado **`.env`**. Este debe encontrarse en la raíz del proyecto, y en su interior tener lo siguiente:
+
+```bash
+   DB_USER=postgres
+   DB_PASSWORD= ---> ¡Aquí va tu contraseña!
+   DB_HOST=localhost
+```
+
+---
+
+<br />
+
+<h1 align="center">📋 INSTRUCCIONES</h1>
 
 </br >
 
-### **ON SEARCH**
+## **👩‍💻 EJERCICIO 1**
 
-Ve del lado del Front-End de tu proyecto, y busca la función **onSearch**. En ella deberás eliminar la URL de la API de Rick&Morty y pegar la nueva URL de tu servidor: **`http://localhost:3000/rickandmorty/onsearch/`**. Si levantas tu proyecto deberías de poder utilizar tu search-bar normalmente.
+El primer paso es conectar nuestro código a la base de datos **rickandmorty**. Para esto:
 
-</br >
-
-### **DETAIL**
-
-Ahora queda que vallas a tu componente **Detail.jsx** y reemplaces la URL de la API con esta nueva URL de tu servidor: **`http://localhost:3000/rickandmorty/detail/`**. Ahora podrás ingresar al detalle de cualquier personaje sin problemas.
+1. Copia y pega el archivo [**DB_connection**](./DB_connection.js) dentro de la carpeta **`src`** de tu proyecto y completa el valor que necesita la instancia de Sequelize. ¡Te dejamos un template en el archivo!
 
 ---
 
 </br >
 
-## **🚨 A TENER EN CUENTA**
+## **👩‍💻 EJERCICIO 2**
 
-Si tu servidor no está levantado, o si los links no fueron bien escritos, tu aplicación no funcionará correctamente.
+Llegó el momento de crear nuestros modelos. Dentro de tu carpeta **`src`** crea una nueva carpeta llamada **`models`**. Dentro de esta carpeta copia y pega el archivo **`Character`**. Aquí deberás crear las siguientes propiedades para el modelo (incluye los tipos):
+
+### **Character**
+
+<details>
+   <summary>id</summary>
+   <ul>
+      <li>Integer</li>
+      <li>allowNull: false</li>
+      <li>Primary Key</li>
+   </ul>
+</details>
+<details>
+   <summary>name</summary>
+   <ul>
+      <li>String</li>
+      <li>allowNull: false</li>
+   </ul>
+</details>
+<details>
+   <summary>status</summary>
+   <ul>
+      <li>Enum (Alive - Dead - unknown)</li>
+      <li>allowNull: false</li>
+   </ul>
+</details>
+<details>
+   <summary>species</summary>
+   <ul>
+      <li>String</li>
+      <li>allowNull: false</li>
+   </ul>
+</details>
+<details>
+   <summary>gender</summary>
+   <ul>
+      <li>Enum (Female - Male - Genderless - unknown)</li>
+      <li>allowNull: false</li>
+   </ul>
+</details>
+<details>
+   <summary>origin</summary>
+   <ul>
+      <li>String</li>
+      <li>allowNull: false</li>
+   </ul>
+</details>
+<details>
+   <summary>image</summary>
+   <ul>
+      <li>String</li>
+      <li>allowNull: false</li>
+   </ul>
+</details>
 
 </br >
 
 ---
 
-¡Hemos terminado por ahora!🥳
+## **👩‍💻 EJERCICIO 3**
+
+Una vez creado el modelo, regresa al archivo **`DB_connection`**. En este ejercicio nos encargaremos de que, cuando levantemos el proyecto, este modelo se guarde en la base de datos. Para esto:
+
+Importa el modelo que haz creado en este archivo. Ahora deberás ejecutar este modelo pasándole como argumento la instancia de Sequelize ya creada. 👀 Revisa 👀 que hay comentado en el archivo un espacio para que realices este ejercicio.
+
+---
+
+</br >
+
+## **😼 BREAK 😼**
+
+En este momento ya deberíamos de poder levantar el proyecto y que todo esté funcionando correctamente. Para esto ejecuta el comando:
+
+```bash
+   npm start
+```
+
+<div align="center" >
+   <img src="./assets/workInProgress.png" alt="" />
+</div>
+
+---
+
+<br />
+
+## **👩‍💻 EJERCICIO 4**
+
+¡Ahora si! Llegó el momento de guardar los personajes en nuestra base de datos. Para esto tendremos que crear un controlador y una ruta.
+
+### **Controlador**
+
+Dirígete a la carpeta **`controllers`** y crea un archivo llamado **`saveApiData`**. Dentro de este archivo deberás:
+
+1. Crea una función llamada **`getApiData`**.
+
+2. El objetivo de esta función es hacer un request a la API de Rick & Morty ("**`https://rickandmortyapi.com/api/character`**") y obtener los primeros 100 personajes.
+
+> [**NOTA**]: no olvides de manejar el error.
+
+3. Cada personaje viene con información que no nos interesa, por lo que es importante que todos los personajes de tu array solo tengan las propiedades:
+
+-  Id
+-  Name
+-  Species
+-  Status
+-  Origin
+-  Gender
+-  Image
+
+4. Finalmente, esta función debe retornar el arreglo con los primeros 100 personajes.
+
+> [**PISTA**]: ¡hay muchas formas de resolver esto! Te desafíamos a que utilices recursión, pero puedes hacerlo como más prefieras.
+
+---
+
+</br >
+
+## **👩‍💻 EJERCICIO 5**
+
+Una vez que tu función cumpla con su objetivo tendremos que guardar a los personajes en la base de datos. En el mismo archivo de antes crea una función llamada **`saveApiData`** y expórtala.
+
+1. Ejecuta a la función **`getApiData`** y guarda la información que retorna dentro de una variable.
+
+2. Importa en este archivo a tu modelo de la siguiente forma:
+
+```javascript
+const { character } = require('../models/Character');
+```
+
+3. Esta función debe guardar cada uno de los personajes en la base de datos. Puedes utilizar la query **`findOrCreate`**.
+
+---
+
+<br />
+
+## **👩‍💻 EJERCICIO 6**
+
+Ve al archivo **`server`**. Aquí deberás importar la función creada en el ejercicio anterior, y el objeto **`sequelize`** del archivo **`DB_connection`**.
+
+1. Sincroniza la base de datos, pasándole como argumento la propiedad **force** en true.
+
+2. Ejecuta la función **`saveApiData`**.
+
+3. Luego de los dos pasos anteriores debe levantarse el servidor.
+
+---
+
+<br />
+
+## **👩‍💻 EJERCICIO 7**
+
+Para validar que todo salió correctamente vamos a crear nuestra primera ruta GET, y obtener a todos nuestros personajes. Para esto:
+
+1. Dirígete a la carpeta **`controllers`** y crea un nuevo controlador llamado **`getAllChars`** que se encargue de buscar todos los personajes guardados en la base de datos.
+
+> [**NOTA**]: puedes utilizar la query: findAll.
+
+2. Crea la route en el archivo **`index`** de tu carpeta **routes**. El path de esta ruta debe ser: "_/rickandmorty/all_".
+
+Una vez que hayas construido esta función puede compobar en tu iterador de APIs favorita (thunder, postman, insomnia, etc...) que esta ruta funcione correctamente. El endponit al que tienes que apuntar el request es:
+
+```javascript
+'http://localhost:3001/rickandmorty/allCharacters';
+```
+
+---
+
+<br />
+
+## **🔎 Recursos adicionales**
+
+-  Documentación [**API Rick and Morty**](https://rickandmortyapi.com/documentation/#get-all-characters)
+
+-  Documentación [**Sequelize**](https://sequelize.org/docs/v6/)
+
+<div align="center">
+   <img src="./assets/rickandmorty.jpg" alt="" width="800px" />
+</div>

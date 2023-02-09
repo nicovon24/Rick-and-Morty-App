@@ -1,8 +1,7 @@
 const express = require('express')
 const routerUsers = express.Router()
 const users_data = require("../utils/users_data.js")
-const postUsers = require("../controllers/users/postUsers")
-const deleteUser = require("../controllers/users/deleteUser.js")
+const {postUsers, deleteUser} = require("../controllers/api/users.js")
 
 routerUsers.get("/", (req,res)=>{
     res.status(200).json(users_data)
