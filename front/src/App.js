@@ -17,7 +17,7 @@ import Loader from './components/Loader/Loader'
 function App () {
   let [isLogin, setIsLogin] = useState(false)
   let {pathname} = useLocation()
-  let [isLoading, setIsLoading] = useState(true)
+  let [isLoading, setIsLoading] = useState(true) //sada
   useEffect(()=>{
     setTimeout(()=>{
         setIsLoading(false)
