@@ -9,7 +9,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node ./app.js",
-    "build": "npx grunt build"
+    "build": "npm install && npm run build-assets"
   },
   "author": "",
   "license": "ISC",
