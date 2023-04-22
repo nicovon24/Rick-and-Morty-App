@@ -1,6 +1,6 @@
 import { useEffect, useState  } from "react";
 import styles from "./Characters.module.css"
-import {Link, NavLink} from "react-router-dom"
+import {Link} from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux";
 import { addFavorite, removeFavorite } from "../../../redux/actions";
 

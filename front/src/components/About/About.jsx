@@ -1,5 +1,4 @@
 import styles from "./About.module.css";
-import { useNavigate } from "react-router-dom";
 import PdfFile from "../../assets/cv.pdf";
 
 export default function About() {

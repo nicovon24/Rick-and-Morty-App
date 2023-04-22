@@ -12,7 +12,7 @@ export default function CharacterDetails(){
     
     useEffect(()=>{
         dispatch(getCharDetails(id))
-    }, [])
+    }, [dispatch, id])
     
     const handleBackToHome = ()=> navigateToHome("/characters")
     let character = useSelector(state=>state.charDetails)
@@ -49,7 +49,6 @@ export default function CharacterDetails(){
                     </table>
                 </div>
                 <button className="btn_backHome" onClick={handleBackToHome}>Back to characters</button>
-                {/* <Button className={`${styles.btn_backHome}`} onBackToHome={handleBackToHome}/> */}
             </div>
         </>
     )
