@@ -1,0 +1,5 @@
+build:
+  language: node
+  node_version: 18
+
+start_cmd: "node ./app.js"
