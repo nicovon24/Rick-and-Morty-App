@@ -1,9 +1,9 @@
-const pg = require('pg')
+const pg = require("pg");
 // require('dotenv').config();
-require('dotenv').config();
-const { Sequelize } = require('sequelize');
-const ModelCharacter = require('./src/models/Character');
-const {DB_USER, DB_PASSWORD, DB_HOST} = process.env;
+require("dotenv").config();
+const { Sequelize } = require("sequelize");
+const ModelCharacter = require("./src/models/Character");
+const { DB_USER, DB_PASSWORD, DB_HOST, DB_DEPLOY, DB_NAME } = process.env;
 
 // const DB_USER = "postgres"
 // const DB_PASSWORD = "Nico110500"
@@ -13,18 +13,30 @@ const {DB_USER, DB_PASSWORD, DB_HOST} = process.env;
 EJERCICIO 01
 */
 
-/* conexion */
-const database = new Sequelize(
-   // URL
-   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/rickandmorty`,
-   { logging: false, native: false }
-);
+// const { DB_USER, DB_PASSWORD, DB_HOST, DB_PORT, DB_NAME } = process.env;
 
-ModelCharacter(database)
+// const db = new Sequelize(
+// 	`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`,
+// 	{
+// 		logging: false, // set to console.log to see the raw SQL queries
+// 		native: false, // lets Sequelize know we can use pg-native for ~30% more speed
+// 	}
+// );
+
+const database = new Sequelize(DB_DEPLOY, { logging: false, native: false });
+
+/* conexion */
+// const database = new Sequelize(
+//    // URL
+//    `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/rickandmorty`,
+//    { logging: false, native: false }
+// );
+
+ModelCharacter(database);
 
 /* modelos */
 
 module.exports = {
-   ...database.models,
-   database,
+	...database.models,
+	database,
 };

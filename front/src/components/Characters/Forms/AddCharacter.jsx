@@ -49,6 +49,7 @@ export default function FormAddCharacter(){
             ...inputs,
             [e.target.name]: e.target.value
         })
+        console.log(e.target.value);
     }
     
     return(
@@ -77,9 +78,9 @@ export default function FormAddCharacter(){
             </select>
 
             <label className={styles.add_property} htmlFor="gender">Gender:</label>
-            <select className={`input_primary ${!inputs.gender ? "input_invalid" : "input_valid"}`} value={inputs.gender} name="gender" onChange={handleChangeInput}>
+            <select className={`input_primary ${!inputs.gender ? "input_invalid" : "input_valid"}`} value={inputs?.gender} name="gender" onChange={handleChangeInput}>
                 <option value="">Select an option...</option>
-                {arrGender.map((el,index)=><option value={el.toLowerCase()} key={index}>{el}</option>)}
+                {arrGender.map((el,index)=><option value={el} key={index}>{el}</option>)}
             </select>
 
             <label className={styles.add_property}>Image:</label> 

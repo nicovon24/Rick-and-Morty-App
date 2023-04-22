@@ -1,15 +1,13 @@
-const express = require('express')
-const {Character} = require("../../../db/db.js")
+const express = require("express");
+const { Character } = require("../../../../db");
 
+const getAllChars = async (req, res) => {
+	try {
+		const characters = await Character.findAll();
+		return characters;
+	} catch (err) {
+		res.status(400).json({ error: err.message });
+	}
+};
 
-const getAllChars = async (req,res)=>{ 
-    try{
-        const characters = await Character.findAll()
-        return characters
-    }
-    catch(err){
-        res.status(400).json({error: err.message})
-    }
-}
-
-module.exports = getAllChars
+module.exports = getAllChars;
