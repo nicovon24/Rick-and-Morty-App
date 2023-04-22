@@ -9,7 +9,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node ./app.js",
-    "build": "npx grunt build"
+    "build": "netlify deploy --prod"
   },
   "author": "",
   "license": "ISC",
@@ -24,9 +24,5 @@
     "nodemon": "^2.0.20",
     "pg": "^8.9.0",
     "sequelize": "^6.28.0"
-  },
-  "devDependencies": {
-    "grunt": "^1.6.1",
-    "grunt-contrib-uglify": "^5.2.2"
   }
 }
