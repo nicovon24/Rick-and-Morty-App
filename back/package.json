@@ -21,9 +21,13 @@
     "express": "^4.18.2",
     "mongoose": "^6.9.0",
     "mongoskin": "^2.1.0",
+    "netlify-lambda": "^2.0.16",
     "nodemon": "^2.0.20",
     "pg": "^8.9.0",
     "sequelize": "^6.28.0",
     "serverless": "^3.30.1"
+  },
+  "devDependencies": {
+    "netlify-cli": "^14.2.1"
   }
 }
