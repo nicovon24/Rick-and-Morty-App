@@ -26,7 +26,7 @@ import {
 export const getInitialChars = () => {
 	return async function (dispatch) {
 		try {
-			let response = await axios.get(`http://localhost:3001/api/detail`);
+			let response = await axios.get(`https://r-and-morty.onrender.com/api/detail`);
 			return dispatch({
 				type: GET_INITIAL_CHARS,
 				payload: response.data.results,
@@ -40,7 +40,7 @@ export const getInitialChars = () => {
 export const getCharDetails = (id) => {
 	return async function (dispatch) {
 		try {
-			let response = await axios.get(`http://localhost:3001/api/detail/${id}`);
+			let response = await axios.get(`https://r-and-morty.onrender.com/api/detail/${id}`);
 			return dispatch({
 				type: GET_CHAR_DETAILS,
 				payload: response.data,
@@ -62,7 +62,7 @@ export const searchChar = (input) => {
 	return async function (dispatch) {
 		try {
 			let response = await axios.get(
-				`http://localhost:3001/api/detail/?name=${input}`
+				`https://r-and-morty.onrender.com/api/detail/?name=${input}`
 			);
 			return dispatch({
 				type: SEARCH_CHAR,
@@ -85,7 +85,7 @@ export const fetchPage = (page) => {
 	return async function (dispatch) {
 		try {
 			let response = await axios.get(
-				`http://localhost:3001/api/detail/?page=${page}`
+				`https://r-and-morty.onrender.com/api/detail/?page=${page}`
 			);
 			return dispatch({
 				type: FETCH_PAGE,
@@ -159,7 +159,7 @@ export const changeProfile = (data) => {
 export let fetchCreatedChar = () => {
 	return async function (dispatch) {
 		try {
-			let response = await axios("http://localhost:3001/api/created_chars");
+			let response = await axios("https://r-and-morty.onrender.com/api/created_chars");
 			dispatch({
 				type: FETCH_CREATED_CHAR,
 				payload: response.data.results,
@@ -178,7 +178,7 @@ export let addCreatedChar = (data) => {
 };
 
 export let removeCreatedChar = (id) => {
-	fetch(`http://localhost:3001/api/created_chars/${id}`, {
+	fetch(`https://r-and-morty.onrender.com/api/created_chars/${id}`, {
 		method: "DELETE",
 		headers: { "Content-Type": "application/json" },
 		mode: "cors",
@@ -192,7 +192,7 @@ export let removeCreatedChar = (id) => {
 export let postCreatedChar = (data) => {
 	return async function (dispatch) {
 		const response = await axios.post(
-			"http://localhost:3001/api/created_chars",
+			"https://r-and-morty.onrender.com/api/created_chars",
 			data
 		);
 		console.log(response);
@@ -205,7 +205,7 @@ export let postCreatedChar = (data) => {
 
 export let postUser = (data) => {
 	return async function (dispatch) {
-		fetch("http://localhost:3001/api/users", {
+		fetch("https://r-and-morty.onrender.com/api/users", {
 			method: "POST",
 			body: JSON.stringify(data),
 			headers: { "Content-Type": "application/json" },

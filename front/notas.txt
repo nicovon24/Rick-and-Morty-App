@@ -1,1 +1,0 @@
-//* agregar imagenes a formulario de crear character
