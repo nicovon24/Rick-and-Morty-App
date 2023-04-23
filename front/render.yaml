@@ -1,0 +1,10 @@
+services:
+  - name: rick-and-morty-app
+    buildCommand: npm install && react-scripts build
+    startCommand: react-scripts start
+
+build:
+  language: node
+  node_version: 18
+
+start_cmd: "react-scripts start"
